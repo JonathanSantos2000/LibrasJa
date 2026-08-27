@@ -5,23 +5,17 @@ import {
   BreakpointObserver,
   Breakpoints,
   BreakpointState,
-  LayoutModule,
 } from '@angular/cdk/layout';
 
 import { Observable } from 'rxjs';
+
 import { MenuComponent } from '../menu/menu.component';
 import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    MenuComponent,
-    FooterComponent,
-    LayoutModule,
-  ],
+  imports: [CommonModule, RouterModule, MenuComponent, FooterComponent],
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css'],
 })
