@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  z-index: 4;
+  min-height: 100vh;
+}
+
+.desktop .menu {
+  width: 260px;
+}
+
+.desktop .main {
+  flex: 1;
+  position: relative;
+}
+
+.mobile {
+  width: 100%;
+  flex-direction: column;
+}
+
+.mobile main {
+  flex: 1;
+}
+
+app-menu {
+  position: fixed;
+  top: 0;
+  z-index: 9;
+  width: 100%;
+}
