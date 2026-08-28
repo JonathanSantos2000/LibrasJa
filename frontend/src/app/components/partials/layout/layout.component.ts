@@ -11,11 +11,12 @@ import { Observable } from 'rxjs';
 
 import { MenuComponent } from '../menu/menu.component';
 import { FooterComponent } from '../footer/footer.component';
+import { ToastComponent } from "../toast/toast.component";
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule, MenuComponent, FooterComponent],
+  imports: [CommonModule, RouterModule, MenuComponent, FooterComponent, ToastComponent],
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css'],
 })

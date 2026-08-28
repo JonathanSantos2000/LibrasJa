@@ -1,0 +1,22 @@
+<div class="toast-container">
+  @for (toast of toastService.toasts$(); track toast.id) {
+    <div class="toast" [class]="toast.type">
+      <div class="toast-content">
+        @if (toast.title) {
+          <strong>{{ toast.title }}</strong>
+        }
+
+        <span>{{ toast.message }}</span>
+      </div>
+
+      <button
+        type="button"
+        class="close"
+        (click)="toastService.remove(toast.id)"
+        aria-label="Fechar"
+      >
+        X
+      </button>
+    </div>
+  }
+</div>
