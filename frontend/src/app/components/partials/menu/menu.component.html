@@ -7,13 +7,18 @@
   <div class="component-menu">
     <div class="top_menu">
       <div class="user">
-        <img
-          [src]="'http://localhost:5000/uploads/users/' + user.UsuImgPer"
-          [alt]="user.UsuNom"
-          loading="lazy"
-        />
         @if (isAuth) {
+          <img
+            [src]="'http://localhost:5000/uploads/users/' + user.UsuImgPer"
+            [alt]="user.UsuNom"
+            loading="lazy"
+          />
           <h3>{{ firstName }}</h3>
+        } @else {
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/709/709699.png"
+            alt=""
+          />
         }
       </div>
       <div class="buttons">
@@ -38,39 +43,6 @@
             </li>
           }
           <!-- Adm Comuns-->
-          @case ("admin") {
-            <li (click)="menuComodo()">Cômodos</li>
-            <li (click)="menuPresente()">Presentes</li>
-          }
-          <!-- Menu Cômodos-->
-          @case ("comodo") {
-            <li>
-              <a [routerLink]="['/rooms/room-new']" (click)="close_menu()">
-                Adicionar Cômodos
-              </a>
-            </li>
-            <li>
-              <a [routerLink]="['/rooms/room-edit']" (click)="close_menu()">
-                Editar Cômodos
-              </a>
-            </li>
-            <li>
-              <a [routerLink]="['/rooms/room-list']" (click)="close_menu()">
-                Listar Cômodos
-              </a>
-            </li>
-          }
-          <!-- Menu Presentes-->
-          @case ("presentes") {
-            <li>
-              <a
-                [routerLink]="['/presentes/presentes-new']"
-                (click)="close_menu()"
-              >
-                Adicionar Presentes
-              </a>
-            </li>
-          }
           <!-- Fim Case-->
         }
       </ul>

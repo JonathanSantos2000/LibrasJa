@@ -1,4 +1,11 @@
 .conteinner__register {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form {
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -20,7 +27,10 @@
 
 .toggle-login {
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 320px;
+  height: 46px;
   background: #d5bfb4;
   border-radius: 30px;
   padding: 4px;
@@ -30,22 +40,29 @@
 .btn {
   flex: 1;
   border: none;
-  padding: 10px 0;
   border-radius: 30px;
   font-weight: bold;
   cursor: pointer;
   background: transparent;
 }
 
+.btn.login {
+  width: 100%;
+  height: 46px;
+  display: block;
+}
 .btn.login a {
   color: #000;
-
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
+
 }
 
 .btn.register {
+  padding: 10px 0;
   color: #fff;
 }
 
@@ -72,4 +89,3 @@
 .senha text-input {
   width: 49%;
 }
-

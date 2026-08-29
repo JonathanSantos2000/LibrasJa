@@ -1,1 +1,41 @@
-<p>login-page works!</p>
+<div class="conteinner__login">
+  <div class="form">
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+      <div class="title_logo">
+        <h3>Login ou Registro</h3>
+        <div class="toggle-login">
+          <button class="btn login active">LOGIN</button>
+          <button class="btn register">
+            <a
+              [routerLink]="['/auth/registro']"
+              routerLinkActive="router-link-active"
+            >
+              REGISTRAR
+            </a>
+          </button>
+        </div>
+      </div>
+
+      <!-- email -->
+      <text-input
+        [control]="fc['email']"
+        [showErrorWhen]="isSubmitted"
+        type="email"
+        label="Email:"
+        exibir_label="0"
+      ></text-input>
+      <!-- password -->
+      <text-input
+        [control]="fc['password']"
+        [showErrorWhen]="isSubmitted"
+        type="password"
+        label="Senha:"
+        exibir_label="0"
+      ></text-input>
+
+      <div class="btns">
+        <button type="submit">Criar</button>
+      </div>
+    </form>
+  </div>
+</div>

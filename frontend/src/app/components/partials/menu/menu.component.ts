@@ -11,7 +11,7 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class MenuComponent {
   menu_level: 'off' | 'menu' = 'off';
-  menu_center: 'normal' | 'admin' | 'comodo' | 'presentes' = 'normal';
+  menu_center: 'normal' | 'admin' = 'normal';
 
   user!: User;
   constructor(
@@ -21,8 +21,6 @@ export class MenuComponent {
     this.userService.user$.subscribe((newUser) => {
       this.user = newUser!;
     });
-
-    console.log(this.user.UsuNom);
   }
 
   // =========================
@@ -69,12 +67,6 @@ export class MenuComponent {
     this.menu_center = 'admin';
   }
 
-  menuComodo() {
-    this.menu_center = 'comodo';
-  }
-  menuPresente() {
-    this.menu_center = 'presentes';
-  }
   logout() {
     this.userService.logout();
     this.close_menu();
