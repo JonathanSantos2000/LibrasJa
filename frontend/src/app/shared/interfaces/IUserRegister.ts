@@ -3,6 +3,7 @@ export interface IUserRegister {
   UsuEmail: string;
   UsuSen: string;
   UsuSenCon: string;
-  UsuCar: Number;
+  UsuNivAce: Number;
+  UsuImgPer: string;
   UsuDatCad: string;
 }

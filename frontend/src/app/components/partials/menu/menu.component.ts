@@ -21,6 +21,8 @@ export class MenuComponent {
     this.userService.user$.subscribe((newUser) => {
       this.user = newUser!;
     });
+
+    console.log(this.user.UsuNom);
   }
 
   // =========================
@@ -75,5 +77,6 @@ export class MenuComponent {
   }
   logout() {
     this.userService.logout();
+    this.close_menu();
   }
 }

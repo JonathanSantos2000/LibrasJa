@@ -15,7 +15,7 @@ const USER_KEY = 'User';
 })
 export class UserService {
   private readonly http = inject(HttpClient);
-private readonly toastr = inject(ToastService);
+  private readonly toastr = inject(ToastService);
 
   private readonly userSubject = new BehaviorSubject<User | null>(null);
   public readonly user$ = this.userSubject.asObservable();
@@ -33,16 +33,16 @@ private readonly toastr = inject(ToastService);
       tap({
         next: (user) => this.handleAuthSuccess(user, 'Login bem-sucedido'),
         error: (err) => this.handleError(err, 'Falha ao logar'),
-      })
+      }),
     );
   }
 
-  register(data: IUserRegister): Observable<User> {
-    return this.http.post<User>(USER_REGISTER_URL, data).pipe(
+  register(formData: FormData): Observable<User> {
+    return this.http.post<User>(USER_REGISTER_URL, formData).pipe(
       tap({
         next: (user) => this.handleAuthSuccess(user, 'Registro bem-sucedido'),
         error: (err) => this.handleError(err, 'Registro falhou'),
-      })
+      }),
     );
   }
 
@@ -62,7 +62,7 @@ private readonly toastr = inject(ToastService);
   private handleAuthSuccess(user: User, message: string): void {
     this.setUserToStorage(user);
     this.userSubject.next(user);
-    this.toastr.success(`Bem-vindo ao Kora, ${user.UsuNom}`, message);
+    this.toastr.success(`Bem-vindo ao LibrasJa, ${user.UsuNom}`, message);
   }
 
   private handleError(error: any, title: string): void {

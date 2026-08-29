@@ -8,7 +8,6 @@ export interface IUser extends Document {
   UsuAti: boolean;
   UsuImgPer: string;
   UsuDatCad: Date;
-
 }
 
 const UserSchema = new Schema<IUser>(
@@ -39,11 +38,15 @@ const UserSchema = new Schema<IUser>(
       type: Boolean,
       default: true,
     },
+    UsuImgPer: {
+      type: String,
+      default: "",
+    },
     UsuDatCad: { type: Date, default: Date.now },
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export default model<IUser>("User", UserSchema);

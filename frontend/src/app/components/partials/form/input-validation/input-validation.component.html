@@ -1,0 +1,7 @@
+@if (errorMessages && showErrorWhen) {
+  <div class="error-list">
+    @for (errorMessage of errorMessages; track errorMessage) {
+      <div>{{ errorMessage }}</div>
+    }
+  </div>
+}

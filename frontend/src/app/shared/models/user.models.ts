@@ -4,5 +4,6 @@ export class User {
   UsuEmail!: string;
   UsuNivAce!: number;
   UsuTok!: string;
+  UsuImgPer!: string;
   UsuDatCad!: Date;
 }

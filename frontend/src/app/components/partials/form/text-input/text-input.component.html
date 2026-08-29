@@ -1,0 +1,10 @@
+<app-input [label]="label" [customClass]="customClass" >
+  <input
+    [type]="type"
+    [placeholder]="label"
+    [formControl]="formControl"
+    [style.text-transform]="type === 'text' ? 'uppercase' : 'none'"
+  />
+  <app-input-validation [control]="control" [showErrorWhen]="showErrorWhen">
+  </app-input-validation>
+</app-input>

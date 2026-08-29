@@ -1,0 +1,11 @@
+<div class="container__input-group" [ngClass]="customClass" [ngStyle]="{ 'background-color': bgColor }">
+  <ng-container *ngIf="exibir_label === 1">
+    <label>
+      {{ label }}
+    </label>
+  </ng-container>
+
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="conteinner__register">
+  <div class="form"></div>
+  <form [formGroup]="registerForm" (ngSubmit)="submit()">
+    <div class="title_logo">
+      <h3>Login ou Registro</h3>
+      <div class="toggle-login">
+        <button class="btn login">
+          <a [routerLink]="['/auth/login']"> LOGIN </a>
+        </button>
+        <button class="btn register active">REGISTRAR</button>
+      </div>
+    </div>
+    <!-- Imagem Perfil -->
+    <div class="gift-image-container">
+      <label class="gift-image-upload">
+        <input
+          type="file"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          hidden
+        />
+
+        <!--  -->
+        @if (imagePreview) {
+          <img [src]="imagePreview" alt="Produto" class="gift-preview" />
+        }
+        <!--  -->
+        @if (!imagePreview) {
+          <div class="upload-placeholder">
+            <span class="upload-icon">📷</span>
+            <span>Adicionar foto de perfil</span>
+          </div>
+        }
+      </label>
+    </div>
+    <!-- Nome -->
+    <text-input
+      [control]="fc['name']"
+      [showErrorWhen]="isSubmitted"
+      type="text"
+      label="Nome:"
+      exibir_label="0"
+    ></text-input>
+
+    <!-- email -->
+    <text-input
+      [control]="fc['email']"
+      [showErrorWhen]="isSubmitted"
+      type="email"
+      label="Email:"
+      exibir_label="0"
+    ></text-input>
+    <div class="senha">
+      <!-- password -->
+      <text-input
+        [control]="fc['password']"
+        [showErrorWhen]="isSubmitted"
+        type="password"
+        label="Senha:"
+        exibir_label="0"
+      ></text-input>
+
+      <!-- confirmPassword -->
+      <text-input
+        [control]="fc['confirmPassword']"
+        [showErrorWhen]="isSubmitted"
+        type="password"
+        label="Confirme a senha:"
+        exibir_label="0"
+      ></text-input>
+    </div>
+    <div class="btns">
+      <button type="submit">Criar</button>
+    </div>
+  </form>
+</div>

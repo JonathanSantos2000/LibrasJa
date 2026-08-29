@@ -1,0 +1,75 @@
+.conteinner__register {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1px;
+}
+
+/**/
+.title_logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #9a8478;
+}
+.title_logo > h3 {
+  font-family: "Imperial Script", sans-serif;
+  font-size: 45px;
+}
+
+.toggle-login {
+  display: flex;
+  width: 320px;
+  background: #d5bfb4;
+  border-radius: 30px;
+  padding: 4px;
+  margin: 0.5rem 0;
+}
+
+.btn {
+  flex: 1;
+  border: none;
+  padding: 10px 0;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  background: transparent;
+}
+
+.btn.login a {
+  color: #000;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.btn.register {
+  color: #fff;
+}
+
+.btn.active {
+  background: linear-gradient(90deg, #e0c48a, #d6b36a);
+}
+
+.btns button {
+  width: 100%;
+  color: #fff;
+  border: none;
+  padding: 10px 0;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  background: linear-gradient(90deg, #e0c48a, #d6b36a);
+}
+
+.senha {
+  display: flex;
+  justify-content: space-between;
+}
+
+.senha text-input {
+  width: 49%;
+}
+
