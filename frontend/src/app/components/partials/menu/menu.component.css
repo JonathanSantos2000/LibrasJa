@@ -1,101 +1,310 @@
-.btn-open-menu {
-  position: absolute;
-  top: 0;
-  right: 0;
-  border: none;
-  background: none;
-  color: #5a4e4e;
-  font-size: 32px;
-  transition: 0.2s ease-in-out;
-  z-index: 9;
-}
+/* ========================================
+   BOTÃO ABRIR MENU
+======================================== */
 
-.component-menu .top_menu {
-  border: 1px solid #868686;
-  background: #f2f7fb;
-  width: 250px;
+.btn-open-menu {
+  width: 52px;
+  height: 52px;
 
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 24px;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 12px;
+
+  background: transparent;
+
+  color: #fff;
+
+  font-size: 32px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
-.btn-close-menu {
-  border: 1px solid #000;
-  border: none;
-  background: none;
-  color: #5a4e4e;
-  font-size: 32px;
-  transition: 0.2s ease-in-out;
+.btn-open-menu:hover {
+  background: rgba(255, 255, 255, 0.12);
+
+  transform: scale(1.05);
+}
+
+.btn-open-menu:active {
+  transform: scale(0.95);
+}
+
+/* ========================================
+   FUNDO DO MENU
+======================================== */
+
+.menu-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.35);
+
+  backdrop-filter: blur(2px);
+
+  z-index: 999;
+}
+
+/* ========================================
+   MENU LATERAL
+======================================== */
+
+.component-menu {
+  position: fixed;
+
+  top: 0;
+  right: 0;
+
+  width: 320px;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #fff;
+
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.18);
+
+  z-index: 1000;
+
+  overflow-y: auto;
+
+  animation: menuOpen 0.25s ease;
+}
+
+/* ========================================
+   ANIMAÇÃO
+======================================== */
+
+@keyframes menuOpen {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ========================================
+   TOPO DO MENU
+======================================== */
+
+.top-menu {
+  min-height: 130px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 24px;
+
+  background: #f2f7fb;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* ========================================
+   USUÁRIO
+======================================== */
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  min-width: 0;
 }
 
 .user img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  width: 72px;
-  height: 72px;
-  border-radius: 100%;
-  margin: 0 0 12px;
-  background-color: #fff;
-  border: 1px solid #868686;
+  width: 62px;
+  height: 62px;
+
+  flex-shrink: 0;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+  border: 2px solid #2a6db0;
 }
 
 .user h3 {
-  color: #868686;
-  font-size: 16px;
+  margin: 0;
+
+  color: #334155;
+
+  font-size: 17px;
+  font-weight: 600;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.component-menu .center_menu {
-  border: 1px solid #868686;
-  background: #fff;
-  width: 250px;
-}
+/* ========================================
+   BOTÃO FECHAR
+======================================== */
 
-.center_menu ul {
-  z-index: 99999;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-}
+.btn-close-menu {
+  width: 42px;
+  height: 42px;
 
-.center_menu ul li {
+  flex-shrink: 0;
+
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 64px;
-  padding: 0 24px;
-  margin: 0 0 17px;
-  color: #5d758d;
+  justify-content: center;
+
+  border: none;
+  border-radius: 10px;
+
+  background: transparent;
+
+  color: #64748b;
+
+  font-size: 22px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
-.center_menu ul li a {
-  display: block;
-  font-size: 16px;
-  width: 100%;
+.btn-close-menu:hover {
+  background: #e2e8f0;
+
+  color: #1e293b;
 }
 
-/* Footer */
-.component-menu .footer_menu {
-  border: 1px solid #868686;
-  background: #fff;
-  width: 250px;
+/* ========================================
+   MENU CENTRAL
+======================================== */
+
+.center-menu {
+  flex: 1;
+
+  padding: 20px 14px;
 }
 
-.footer_menu ul li {
+.center-menu ul,
+.footer-menu ul {
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+/* ========================================
+   ITENS DO MENU
+======================================== */
+
+.center-menu li,
+.footer-menu li {
+  margin-bottom: 6px;
+}
+
+.center-menu li a,
+.footer-menu li a {
+  min-height: 52px;
+
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 64px;
-  padding: 0 24px;
-  margin: 0 0 17px;
-  color: #5d758d;
+
+  gap: 14px;
+
+  padding: 0 16px;
+
+  border-radius: 10px;
+
+  color: #475569;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
-.footer_menu ul li a {
-  display: block;
-  font-size: 16px;
-  width: 100%;
+.center-menu li a:hover,
+.footer-menu li a:hover {
+  background: #edf5fc;
+
+  color: #2a6db0;
+
+  transform: translateX(3px);
+}
+
+/* ========================================
+   ÍCONES
+======================================== */
+
+.center-menu li i,
+.footer-menu li i {
+  width: 22px;
+
+  display: flex;
+  justify-content: center;
+
+  color: #2a6db0;
+
+  font-size: 19px;
+}
+
+/* ========================================
+   FOOTER DO MENU
+======================================== */
+
+.footer-menu {
+  padding: 14px;
+
+  border-top: 1px solid #e5e7eb;
+
+  background: #fafafa;
+}
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 480px) {
+  .header {
+    height: 70px;
+  }
+
+  .container-menu {
+    width: 70px;
+    height: 70px;
+  }
+
+  #logo {
+    width: 95px;
+  }
+
+  .btn-open-menu {
+    width: 48px;
+    height: 48px;
+
+    font-size: 30px;
+  }
+
+  .component-menu {
+    width: min(320px, 88vw);
+  }
 }

@@ -1,10 +1,9 @@
-.conteinner__register {
+.conteinner__categoria-new {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
 .form {
   display: flex;
   flex-direction: column;
@@ -25,48 +24,14 @@
   font-size: 45px;
 }
 
-.toggle-login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 320px;
-  height: 46px;
-  background: #d5bfb4;
-  border-radius: 30px;
-  padding: 4px;
-  margin: 0.5rem 0;
-}
-
 .btn {
   flex: 1;
   border: none;
+  padding: 10px 0;
   border-radius: 30px;
   font-weight: bold;
   cursor: pointer;
   background: transparent;
-}
-
-.btn.login {
-  width: 100%;
-  height: 46px;
-  display: block;
-}
-.btn.login a {
-  color: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-.btn.register {
-  padding: 10px 0;
-  color: #fff;
-}
-
-.btn.active {
-  background: linear-gradient(90deg, #4f52d1, #4fa3d1);
 }
 
 .btns button {
@@ -78,13 +43,4 @@
   font-weight: bold;
   cursor: pointer;
   background: linear-gradient(90deg, #4f52d1, #4fa3d1);
-}
-
-.senha {
-  display: flex;
-  justify-content: space-between;
-}
-
-.senha text-input {
-  width: 49%;
 }

@@ -4,7 +4,6 @@ import { BehaviorSubject, tap, Observable } from 'rxjs';
 import { User } from '../shared/models/user.models';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
 import { USER_LOGIN_URL, USER_REGISTER_URL } from '../shared/constants/urls';
-import { IUserRegister } from '../shared/interfaces/IUserRegister';
 import { isPlatformBrowser } from '@angular/common';
 import { ToastService } from '../services/toast.service';
 

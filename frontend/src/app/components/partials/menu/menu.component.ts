@@ -7,11 +7,11 @@ import { Router, RouterLink } from '@angular/router';
   selector: 'app-menu',
   imports: [RouterLink],
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.css',
+  styleUrls: ['./menu.component.css', './menu.header.component.css'],
 })
 export class MenuComponent {
   menu_level: 'off' | 'menu' = 'off';
-  menu_center: 'normal' | 'admin' = 'normal';
+  menu_center: 'normal' | 'admin' | 'sinais' | 'categorias' = 'normal';
 
   user!: User;
   constructor(
@@ -56,9 +56,9 @@ export class MenuComponent {
       this.menu_level = 'off';
     } else if (this.menu_center === 'admin') {
       this.menu_center = 'normal';
-    } else if (this.menu_center === 'comodo') {
+    } else if (this.menu_center === 'sinais') {
       this.menu_center = 'admin';
-    } else if (this.menu_center === 'presentes') {
+    } else if (this.menu_center === 'categorias') {
       this.menu_center = 'admin';
     }
   }
@@ -66,7 +66,12 @@ export class MenuComponent {
   menuAdm() {
     this.menu_center = 'admin';
   }
-
+  menuSinal() {
+    this.menu_center = 'sinais';
+  }
+  menuCategorias() {
+    this.menu_center = 'categorias';
+  }
   logout() {
     this.userService.logout();
     this.close_menu();

@@ -12,7 +12,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #868686;
+  color: #4f52d1;
 }
 
 .gift-image-container {
@@ -26,7 +26,7 @@ a {
   align-items: center;
   width: 100%;
   min-height: 180px;
-  border: 2px dashed #d8c18c;
+  border: 2px dashed #4fa3d1;
   border-radius: 16px;
   background: #faf8f4;
   cursor: pointer;
@@ -35,7 +35,7 @@ a {
 }
 
 .gift-image-upload:hover {
-  border-color: #c7a85a;
+  border-color: #4f52d1;
   background: #f7f3eb;
 }
 
@@ -44,7 +44,7 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  color: #9b8260;
+  color: #4f52d1;
   font-size: 15px;
   text-align: center;
   padding: 20px;

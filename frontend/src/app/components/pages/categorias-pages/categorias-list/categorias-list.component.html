@@ -1,0 +1,31 @@
+<div class="Categorias__container">
+  <div class="Categorias_title">
+    <h1>Lista de Categorias</h1>
+  </div>
+  <div class="conteiner__cards">
+    @for (item of categorias; track $index) {
+      <div class="Categorias__card">
+        <div class="image-container">
+          <img
+            [src]="'http://localhost:5000/uploads/categorias/' + item.CatImg"
+            [alt]="item.CatNom"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="content">
+          <h2 class="title">{{ item.CatNom }}</h2>
+        </div>
+      </div>
+    }
+  </div>
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="page === 1">← Anterior</button>
+
+    <span>Página {{ page }} de {{ totalPages }}</span>
+
+    <button (click)="nextPage()" [disabled]="page === totalPages">
+      Próxima →
+    </button>
+  </div>
+</div>

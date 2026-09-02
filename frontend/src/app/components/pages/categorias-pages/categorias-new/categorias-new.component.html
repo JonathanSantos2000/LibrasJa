@@ -1,0 +1,44 @@
+<div class="conteinner__categoria-new">
+  <div class="form">
+    <form [formGroup]="categoriasForm" (ngSubmit)="submit()">
+      <div class="title_logo">
+        <h3>Nome da Categoria</h3>
+      </div>
+      <!-- Imagem Categorias -->
+      <div class="gift-image-container">
+        <label class="gift-image-upload">
+          <input
+            type="file"
+            accept="image/*"
+            (change)="onFileSelected($event)"
+            hidden
+          />
+
+          <!--  -->
+          @if (imagePreview) {
+            <img [src]="imagePreview" alt="Produto" class="gift-preview" />
+          }
+          <!--  -->
+          @if (!imagePreview) {
+            <div class="upload-placeholder">
+              <span class="upload-icon">📷</span>
+              <span>Adicionar icone para a categoria</span>
+            </div>
+          }
+        </label>
+      </div>
+      <!-- Categoria -->
+      <text-input
+        [control]="fc['categoria']"
+        [showErrorWhen]="isSubmitted"
+        type="text"
+        label="Categoria:"
+        exibir_label="0"
+      ></text-input>
+
+      <div class="btns">
+        <button type="submit">Adicionar</button>
+      </div>
+    </form>
+  </div>
+</div>

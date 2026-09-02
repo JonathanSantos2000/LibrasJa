@@ -12,7 +12,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     const user = JSON.parse(userJson);
     token = user?.UsuTok; // 👈 AJUSTE AQUI (nome exato do campo)
   }
-  
+
   const router = inject(Router);
 
   let cloned = req;

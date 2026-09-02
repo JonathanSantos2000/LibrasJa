@@ -1,81 +1,166 @@
-@if (menu_level === "off") {
-  <button class="btn-open-menu" (click)="open_menu()">
-    <i class="bi bi-list"></i>
-  </button>
-}
-@if (menu_level === "menu") {
-  <div class="component-menu">
-    <div class="top_menu">
-      <div class="user">
-        @if (isAuth) {
-          <img
-            [src]="'http://localhost:5000/uploads/users/' + user.UsuImgPer"
-            [alt]="user.UsuNom"
-            loading="lazy"
-          />
-          <h3>{{ firstName }}</h3>
-        } @else {
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/709/709699.png"
-            alt=""
-          />
-        }
-      </div>
-      <div class="buttons">
-        <button class="btn-close-menu" (click)="back_menu()">
-          <i class="bi bi-x-lg"></i>
-        </button>
-      </div>
-    </div>
-    <div class="center_menu">
-      <ul>
-        @switch (menu_center) {
-          <!-- Usuarios Comuns-->
-          @case ("normal") {
-            <li><a [routerLink]="['/']" (click)="close_menu()">Home</a></li>
-            <li>
-              <a
-                [routerLink]="['/sinais/lista-de-sinais']"
-                (click)="close_menu()"
-              >
-                Lista de Sinais
-              </a>
-            </li>
-          }
-          <!-- Adm Comuns-->
-          <!-- Fim Case-->
-        }
-      </ul>
-    </div>
-    <div class="footer_menu">
-      <ul>
-        @if (!isAuth) {
-          <li>
-            <a
-              [routerLink]="['/auth/login']"
-              routerLinkActive="router-link-active"
-              (click)="close_menu()"
-              >Entrar</a
-            >
-          </li>
-          <li>
-            <a
-              [routerLink]="['/auth/registro']"
-              routerLinkActive="router-link-active"
-              (click)="close_menu()"
-            >
-              Cadastro
-            </a>
-          </li>
-        }
-        @if (isAuth) {
-          <!-- 🔥 SOMENTE ADMIN -->
-          @if (isAdmin && menu_center === "normal") {
-            <li (click)="menuAdm()">Configurar</li>
-          }
-          <li><a (click)="logout()">Sair</a></li>
-        }
-      </ul>
-    </div>
+<header class="header">
+  <div class="container-logo">
+    <img id="logo" src="assets/images/logo.png" alt="LibrasJá" />
   </div>
-}
+
+  <div class="container-menu">
+    @if (menu_level === "off") {
+      <button
+        class="btn-open-menu"
+        type="button"
+        aria-label="Abrir menu"
+        (click)="open_menu()"
+      >
+        <i class="bi bi-list"></i>
+      </button>
+    }
+
+    @if (menu_level === "menu") {
+      <div class="menu-overlay" (click)="back_menu()"></div>
+
+      <aside class="component-menu">
+        <!-- Cabeçalho -->
+        <div class="top-menu">
+          <div class="user">
+            @if (isAuth) {
+              <img
+                [src]="'http://localhost:5000/uploads/users/' + user.UsuImgPer"
+                [alt]="user.UsuNom"
+                loading="lazy"
+              />
+
+              <h3>{{ firstName }}</h3>
+            } @else {
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/709/709699.png"
+                alt="Usuário"
+              />
+
+              <h3>Visitante</h3>
+            }
+          </div>
+
+          <button
+            class="btn-close-menu"
+            type="button"
+            aria-label="Fechar menu"
+            (click)="back_menu()"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <!-- Menu principal -->
+        <nav class="center-menu">
+          <ul>
+            @switch (menu_center) {
+              <!-- Usuarios Comuns-->
+              @case ("normal") {
+                <li>
+                  <a [routerLink]="['/']" (click)="close_menu()">
+                    <i class="bi bi-house"></i>
+                    <span>Home</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    [routerLink]="['/sinais/lista-de-sinais']"
+                    (click)="close_menu()"
+                  >
+                    <i class="bi bi-hand-index-thumb"></i>
+                    <span>Lista de Sinais</span>
+                  </a>
+                </li>
+              }
+              <!-- Adm Comuns-->
+              @case ("admin") {
+                <li (click)="menuSinal()">
+                  <a>
+                    <i class="bi bi-hand-index-thumb"></i>
+                    <span>Sinais</span></a
+                  >
+                </li>
+                <li (click)="menuCategorias()">
+                  <a>
+                    <i class="bi bi-tags"></i>
+                    <span>Categorias</span>
+                  </a>
+                </li>
+              }
+              <!-- Menu Cômodos-->
+              @case ("categorias") {
+                <li>
+                  <a
+                    [routerLink]="['/categorias/categorias-new']"
+                    (click)="close_menu()"
+                  >
+                    <i class="bi bi-tags"></i>
+                    <span>Adicionar Categorias</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    [routerLink]="['/categorias/categorias-edit']"
+                    (click)="close_menu()"
+                  >
+                    <i class="bi bi-tags"></i>
+                    <span>Editar Categorias</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    [routerLink]="['/categorias/categorias-list']"
+                    (click)="close_menu()"
+                  >
+                    <i class="bi bi-tags"></i>
+                    <span>Listar Categorias</span>
+                  </a>
+                </li>
+              }
+            }
+          </ul>
+        </nav>
+
+        <!-- Rodapé -->
+        <div class="footer-menu">
+          <ul>
+            @if (!isAuth) {
+              <li>
+                <a [routerLink]="['/auth/login']" (click)="close_menu()">
+                  <i class="bi bi-box-arrow-in-right"></i>
+                  <span>Entrar</span>
+                </a>
+              </li>
+
+              <li>
+                <a [routerLink]="['/auth/registro']" (click)="close_menu()">
+                  <i class="bi bi-person-plus"></i>
+                  <span>Cadastro</span>
+                </a>
+              </li>
+            }
+
+            @if (isAuth) {
+              @if (isAdmin && menu_center === "normal") {
+                <li>
+                  <a (click)="menuAdm()">
+                    <i class="bi bi-gear"></i>
+                    <span>Configurar</span>
+                  </a>
+                </li>
+              }
+
+              <li>
+                <a (click)="logout()">
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Sair</span>
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+      </aside>
+    }
+  </div>
+</header>
