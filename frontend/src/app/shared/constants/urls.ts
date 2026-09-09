@@ -9,3 +9,6 @@ export const CATEGORIAS_REGISTER_URL = BASE_URL + '/api/categorias/register';
 export const GET_ALL_CATEGORIAS_URL = BASE_URL + '/api/categorias/';
 export const GET_ALL_CATEGORIAS_PAGINATED_URL =
   BASE_URL + '/api/categorias/paginated';
+
+// upload URLs
+export const UPLOAD_IMAGE_URL = BASE_URL + '/uploads/categorias/';
