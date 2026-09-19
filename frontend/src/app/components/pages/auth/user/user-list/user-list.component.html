@@ -1,0 +1,85 @@
+<div class="Users__container">
+  <div class="Users_title">
+    <h1>Lista de Usuários</h1>
+  </div>
+  <div class="conteiner__cards">
+    @for (user of users; track user._id) {
+      @let isCurrentUser = user._id === userOn._id;
+
+      <div class="Users__card">
+        <div class="image-container">
+          <img
+            [src]="UPLOAD_IMAGE_URL + user.UsuImgPer"
+            [alt]="user.UsuNom"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="content">
+          <h2 class="title">
+            {{ user.UsuNom }}
+          </h2>
+
+          <div class="user-info">
+            <span>
+              <strong>Nível de acesso:</strong>
+              @switch (user.UsuNivAce) {
+                @case (0) {
+                  Usuário
+                }
+
+                @case (1) {
+                  Administrador
+                }
+
+                @case (2) {
+                  Criador de Conteúdo
+                }
+              }
+            </span>
+
+            <span>
+              <strong>Posts:</strong>
+              {{ user.UsuQtdPost || 0 }}
+            </span>
+          </div>
+        </div>
+
+        <!-- AÇÕES -->
+        <div class="user-actions" [class.disabled]="isCurrentUser">
+          <select
+            [value]="user.UsuNivAce"
+            [disabled]="isCurrentUser"
+            (change)="changeUserRole(user, $event)"
+          >
+            <option [value]="0" [selected]="user.UsuNivAce === 0">
+              Usuário
+            </option>
+
+            <option [value]="1" [selected]="user.UsuNivAce === 1">
+              Administrador
+            </option>
+
+            <option [value]="2" [selected]="user.UsuNivAce === 2">
+              Criador de Conteúdo
+            </option>
+          </select>
+
+          <button class="btn-ban" [disabled]="isCurrentUser">
+            <i class="bi bi-ban"></i>
+            Banir
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="page === 1">← Anterior</button>
+
+    <span> Página {{ page }} de {{ totalPages }} </span>
+
+    <button (click)="nextPage()" [disabled]="page === totalPages">
+      Próxima →
+    </button>
+  </div>
+</div>

@@ -12,7 +12,7 @@ import { UPLOAD_IMAGE_URL } from '../../../../shared/constants/urls';
   templateUrl: './categorias-list.component.html',
 })
 export class CategoriasListComponent implements OnInit {
-  UPLOAD_IMAGE_URL = UPLOAD_IMAGE_URL;
+  UPLOAD_IMAGE_URL = UPLOAD_IMAGE_URL + 'categorias/';
   page = 1;
   totalPages = 1;
   categorias: Categorias[] = [];

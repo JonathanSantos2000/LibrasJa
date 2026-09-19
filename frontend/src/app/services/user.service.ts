@@ -3,9 +3,14 @@ import { Inject, inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, tap, Observable } from 'rxjs';
 import { User } from '../shared/models/user.models';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
-import { USER_LOGIN_URL, USER_REGISTER_URL } from '../shared/constants/urls';
+import {
+  GET_ALL_USERS_PAGINATED_URL,
+  USER_LOGIN_URL,
+  USER_REGISTER_URL,
+} from '../shared/constants/urls';
 import { isPlatformBrowser } from '@angular/common';
 import { ToastService } from '../services/toast.service';
+import { UserPaginated } from '../shared/interfaces/IUserPaginated';
 
 const USER_KEY = 'User';
 
@@ -53,7 +58,11 @@ export class UserService {
       window.location.reload();
     }
   }
-
+  getUserPaginated(page: number = 1): Observable<UserPaginated> {
+    return this.http.get<UserPaginated>(
+      `${GET_ALL_USERS_PAGINATED_URL}?page=${page}&limit=10`,
+    );
+  }
   // ========================
   // PRIVATE HELPERS
   // ========================

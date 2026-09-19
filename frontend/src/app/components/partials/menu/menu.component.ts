@@ -11,7 +11,9 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class MenuComponent {
   menu_level: 'off' | 'menu' = 'off';
-  menu_center: 'normal' | 'admin' | 'sinais' | 'categorias' = 'normal';
+  menu_center: 'normal' | 'admin' | 'sinais' | 'categorias' | 'config' =
+    'normal';
+  userlevel: 'normal' | 'admin' = 'normal';
 
   user!: User;
   constructor(
@@ -20,6 +22,7 @@ export class MenuComponent {
   ) {
     this.userService.user$.subscribe((newUser) => {
       this.user = newUser!;
+      this.menuStart();
     });
   }
 
@@ -42,6 +45,15 @@ export class MenuComponent {
   // =========================
   // MENU ACTIONS
   // =========================
+  menuStart() {
+    if (this.isAuth) {
+      if (this.isAdmin) {
+        this.menu_center = 'admin';
+        this.userlevel = 'admin';
+      }
+    }
+  }
+
   open_menu() {
     this.menu_level = 'menu';
   }
@@ -55,23 +67,30 @@ export class MenuComponent {
     if (this.menu_center === 'normal') {
       this.menu_level = 'off';
     } else if (this.menu_center === 'admin') {
-      this.menu_center = 'normal';
+      this.menu_level = 'off';
     } else if (this.menu_center === 'sinais') {
-      this.menu_center = 'admin';
+      if (this.userlevel === 'admin') {
+        this.menu_center = 'admin';
+      }
     } else if (this.menu_center === 'categorias') {
-      this.menu_center = 'admin';
+      if (this.userlevel === 'admin') {
+        this.menu_center = 'admin';
+      }
     }
   }
 
-  menuAdm() {
-    this.menu_center = 'admin';
+  menuConfigUser() {
+    this.menu_center = 'config';
   }
+
   menuSinal() {
     this.menu_center = 'sinais';
   }
+
   menuCategorias() {
     this.menu_center = 'categorias';
   }
+
   logout() {
     this.userService.logout();
     this.close_menu();

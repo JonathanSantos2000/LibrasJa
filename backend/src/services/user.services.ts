@@ -3,6 +3,7 @@ import { generateToken } from "../utils/user.utils";
 import User, { IUser } from "../models/user.model";
 import type { IUserResponse } from "../interfaces/IUserResponse";
 import type { IUserInput } from "../interfaces/IUserInput";
+import { IPaginacaoInput } from "../interfaces/IPaginacaoInput";
 
 export const createUser = async ({
   UsuNom,
@@ -24,6 +25,7 @@ export const createUser = async ({
     UsuEmail,
     UsuSen: hashedPassword,
     UsuImgPer,
+    UsuQtdPost: 0,
   });
   const savedUser = await user.save();
 
@@ -62,4 +64,15 @@ export const loginUser = async ({
     id: user._id.toString(),
     UsuTok: token,
   };
+};
+
+export const getUsersPaginated = async ({
+  skip,
+  limit,
+}: IPaginacaoInput): Promise<IUser[]> => {
+  return User.find().sort({ UsuNom: 1 }).skip(skip).limit(limit);
+};
+
+export const countUsers = async () => {
+  return User.countDocuments();
 };

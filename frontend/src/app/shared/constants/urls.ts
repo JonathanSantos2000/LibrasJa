@@ -3,6 +3,7 @@ const BASE_URL = 'http://localhost:5000';
 // Users URLs
 export const USER_LOGIN_URL = BASE_URL + '/api/user/login';
 export const USER_REGISTER_URL = BASE_URL + '/api/user/register';
+export const GET_ALL_USERS_PAGINATED_URL = BASE_URL + '/api/user/paginated';
 
 // CATEGORIAS URLs
 export const CATEGORIAS_REGISTER_URL = BASE_URL + '/api/categorias/register';
@@ -11,4 +12,4 @@ export const GET_ALL_CATEGORIAS_PAGINATED_URL =
   BASE_URL + '/api/categorias/paginated';
 
 // upload URLs
-export const UPLOAD_IMAGE_URL = BASE_URL + '/uploads/categorias/';
+export const UPLOAD_IMAGE_URL = BASE_URL + '/uploads/';

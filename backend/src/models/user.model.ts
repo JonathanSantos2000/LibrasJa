@@ -6,6 +6,7 @@ export interface IUser extends Document {
   UsuSen: string;
   UsuNivAce: number;
   UsuAti: boolean;
+  UsuQtdPost: number;
   UsuImgPer: string;
   UsuDatCad: Date;
 }
@@ -41,6 +42,10 @@ const UserSchema = new Schema<IUser>(
     UsuImgPer: {
       type: String,
       default: "",
+    },
+    UsuQtdPost: {
+      type: Number,
+      default: 0,
     },
     UsuDatCad: { type: Date, default: Date.now },
   },

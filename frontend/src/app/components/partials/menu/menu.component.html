@@ -17,7 +17,6 @@
 
     @if (menu_level === "menu") {
       <div class="menu-overlay" (click)="back_menu()"></div>
-
       <aside class="component-menu">
         <!-- Cabeçalho -->
         <div class="top-menu">
@@ -75,6 +74,13 @@
               }
               <!-- Adm Comuns-->
               @case ("admin") {
+                <li>
+                  <a [routerLink]="['/']" (click)="close_menu()">
+                    <i class="bi bi-house"></i>
+                    <span>Home</span>
+                  </a>
+                </li>
+
                 <li (click)="menuSinal()">
                   <a>
                     <i class="bi bi-hand-index-thumb"></i>
@@ -85,6 +91,36 @@
                   <a>
                     <i class="bi bi-tags"></i>
                     <span>Categorias</span>
+                  </a>
+                </li>
+              }
+              @case ("config") {
+                <li>
+                  <a
+                    [routerLink]="['/user/user-edit']"
+                    (click)="close_menu()"
+                  >
+                    <i class="bi bi-person"></i>
+                    <span>Editar Perfil</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    lista-user
+                    [routerLink]="['/user/user-list']"
+                    (click)="close_menu()"
+                  >
+                    <i class="bi bi-people"></i>
+                    <span>Lista de Usuários</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    [routerLink]="['/user/user-edit-password']"
+                    (click)="close_menu()"
+                  >
+                    <i class="bi bi-key"></i>
+                    <span>Alterar Senha</span>
                   </a>
                 </li>
               }
@@ -142,14 +178,12 @@
             }
 
             @if (isAuth) {
-              @if (isAdmin && menu_center === "normal") {
-                <li>
-                  <a (click)="menuAdm()">
-                    <i class="bi bi-gear"></i>
-                    <span>Configurar</span>
-                  </a>
-                </li>
-              }
+              <li>
+                <a (click)="menuConfigUser()">
+                  <i class="bi bi-gear"></i>
+                  <span>Configurar</span>
+                </a>
+              </li>
 
               <li>
                 <a (click)="logout()">

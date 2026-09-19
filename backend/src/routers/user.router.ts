@@ -6,5 +6,6 @@ const router: Router = Router();
 
 router.post("/register", uploadUserAvatar, userController.register);
 router.post("/login", userController.login);
+router.get("/paginated", userController.getUsersPaginated);
 
 export default router;
