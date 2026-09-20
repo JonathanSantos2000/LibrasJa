@@ -5,6 +5,7 @@ import { User } from '../shared/models/user.models';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
 import {
   GET_ALL_USERS_PAGINATED_URL,
+  UPDATE_USER_ROLE_URL,
   USER_LOGIN_URL,
   USER_REGISTER_URL,
 } from '../shared/constants/urls';
@@ -58,10 +59,17 @@ export class UserService {
       window.location.reload();
     }
   }
+
   getUserPaginated(page: number = 1): Observable<UserPaginated> {
     return this.http.get<UserPaginated>(
       `${GET_ALL_USERS_PAGINATED_URL}?page=${page}&limit=10`,
     );
+  }
+
+  updateUserRole(userId: string, UsuNivAce: number): Observable<User> {
+    return this.http.post<User>(`${UPDATE_USER_ROLE_URL}/${userId}`, {
+      UsuNivAce,
+    });
   }
   // ========================
   // PRIVATE HELPERS

@@ -4,6 +4,7 @@ const BASE_URL = 'http://localhost:5000';
 export const USER_LOGIN_URL = BASE_URL + '/api/user/login';
 export const USER_REGISTER_URL = BASE_URL + '/api/user/register';
 export const GET_ALL_USERS_PAGINATED_URL = BASE_URL + '/api/user/paginated';
+export const UPDATE_USER_ROLE_URL = BASE_URL + '/api/user/update-role';
 
 // CATEGORIAS URLs
 export const CATEGORIAS_REGISTER_URL = BASE_URL + '/api/categorias/register';

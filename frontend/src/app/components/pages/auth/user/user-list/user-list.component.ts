@@ -45,7 +45,25 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  changeUserRole(user: User, event: Event): void {}
+  changeUserRole(user: User, event: Event): void {
+    const select = event.target as HTMLSelectElement;
+    const newRole = Number(select.value);
+
+    if (newRole === user.UsuNivAce) {
+      return;
+    }
+
+    this.userService.updateUserRole(user._id!, newRole).subscribe({
+      next: (updatedUser) => {
+        user.UsuNivAce = updatedUser.UsuNivAce;
+        this.cdr.detectChanges();
+      },
+      error: (error) => {
+        console.error('Erro ao alterar cargo do usuário:', error);
+        select.value = String(user.UsuNivAce);
+      },
+    });
+  }
 
   // Pagination properties
   nextPage() {

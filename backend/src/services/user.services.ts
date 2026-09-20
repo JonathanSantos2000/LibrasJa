@@ -76,3 +76,31 @@ export const getUsersPaginated = async ({
 export const countUsers = async () => {
   return User.countDocuments();
 };
+
+export const updateUserRole = async (
+  userId: string,
+  UsuNivAce: number,
+): Promise<IUser> => {
+  if (![0, 1, 2].includes(UsuNivAce)) {
+    throw new Error("Nível de acesso inválido");
+  }
+
+  const user = await User.findByIdAndUpdate(
+    userId,
+    {
+      $set: {
+        UsuNivAce,
+      },
+    },
+    {
+      returnDocument: "after",
+      runValidators: true,
+    },
+  ).select("-UsuSen");
+
+  if (!user) {
+    throw new Error("Usuário não encontrado");
+  }
+
+  return user;
+};

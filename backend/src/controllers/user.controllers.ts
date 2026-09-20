@@ -53,3 +53,29 @@ export const getUsersPaginated = async (
     res.status(400).json({ error: error.message });
   }
 };
+
+export const updateUser = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
+  try {
+    const { id } = req.params;
+
+    if (typeof id !== "string") {
+      res.status(400).json({
+        error: "ID do usuário inválido",
+      });
+      return;
+    }
+
+    const { UsuNivAce } = req.body;
+
+    const user = await userService.updateUserRole(id, Number(UsuNivAce));
+
+    res.status(200).json(user);
+  } catch (error: any) {
+    res.status(400).json({
+      error: error.message,
+    });
+  }
+};
