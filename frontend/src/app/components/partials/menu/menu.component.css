@@ -1,4 +1,64 @@
 /* ========================================
+   HEADER
+======================================== */
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #2a6db0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+  z-index: 100;
+}
+
+/* ========================================
+   LOGO
+======================================== */
+
+.container-logo {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#logo {
+  width: 105px;
+  height: auto;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+/* ========================================
+   CONTAINER MENU
+======================================== */
+
+.container-menu {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  width: 80px;
+  height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========================================
    BOTÃO ABRIR MENU
 ======================================== */
 
@@ -14,7 +74,6 @@
   border-radius: 12px;
 
   background: transparent;
-
   color: #fff;
 
   font-size: 32px;
@@ -37,7 +96,7 @@
 }
 
 /* ========================================
-   FUNDO DO MENU
+   OVERLAY
 ======================================== */
 
 .menu-overlay {
@@ -49,7 +108,7 @@
 
   backdrop-filter: blur(2px);
 
-  z-index: 999;
+  z-index: 200;
 }
 
 /* ========================================
@@ -63,7 +122,7 @@
   right: 0;
 
   width: 320px;
-  height: 100vh;
+  height: 100dvh;
 
   display: flex;
   flex-direction: column;
@@ -72,9 +131,9 @@
 
   box-shadow: -8px 0 30px rgba(0, 0, 0, 0.18);
 
-  z-index: 1000;
+  z-index: 201;
 
-  overflow-y: auto;
+  overflow: hidden;
 
   animation: menuOpen 0.25s ease;
 }
@@ -94,11 +153,13 @@
 }
 
 /* ========================================
-   TOPO DO MENU
+   TOPO
 ======================================== */
 
 .top-menu {
   min-height: 130px;
+
+  flex-shrink: 0;
 
   display: flex;
   align-items: center;
@@ -116,11 +177,12 @@
 ======================================== */
 
 .user {
+  min-width: 0;
+
   display: flex;
   align-items: center;
-  gap: 14px;
 
-  min-width: 0;
+  gap: 14px;
 }
 
 .user img {
@@ -147,15 +209,16 @@
   font-weight: 600;
 
   white-space: nowrap;
+
   overflow: hidden;
+
   text-overflow: ellipsis;
 }
 
 /* ========================================
    BOTÃO FECHAR
 ======================================== */
-
-.btn-close-menu {
+.btn-menu-action {
   width: 42px;
   height: 42px;
 
@@ -178,13 +241,18 @@
 
   transition:
     background 0.2s ease,
-    color 0.2s ease;
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
-.btn-close-menu:hover {
+.btn-menu-action:hover {
   background: #e2e8f0;
 
   color: #1e293b;
+}
+
+.btn-menu-action:active {
+  transform: scale(0.92);
 }
 
 /* ========================================
@@ -194,7 +262,11 @@
 .center-menu {
   flex: 1;
 
+  min-height: 0;
+
   padding: 20px 14px;
+
+  overflow-y: auto;
 }
 
 .center-menu ul,
@@ -206,7 +278,7 @@
 }
 
 /* ========================================
-   ITENS DO MENU
+   ITENS
 ======================================== */
 
 .center-menu li,
@@ -214,9 +286,18 @@
   margin-bottom: 6px;
 }
 
+/* ========================================
+   LINKS E BOTÕES
+======================================== */
+
 .center-menu li a,
-.footer-menu li a {
+.center-menu li button,
+.footer-menu li a,
+.footer-menu li button {
+  width: 100%;
   min-height: 52px;
+
+  box-sizing: border-box;
 
   display: flex;
   align-items: center;
@@ -225,9 +306,14 @@
 
   padding: 0 16px;
 
+  border: none;
   border-radius: 10px;
 
+  background: transparent;
+
   color: #475569;
+
+  font-family: inherit;
 
   font-size: 16px;
   font-weight: 500;
@@ -236,14 +322,22 @@
 
   cursor: pointer;
 
+  text-align: left;
+
   transition:
     background 0.2s ease,
     color 0.2s ease,
     transform 0.2s ease;
 }
 
+/* ========================================
+   HOVER
+======================================== */
+
 .center-menu li a:hover,
-.footer-menu li a:hover {
+.center-menu li button:hover,
+.footer-menu li a:hover,
+.footer-menu li button:hover {
   background: #edf5fc;
 
   color: #2a6db0;
@@ -255,9 +349,13 @@
    ÍCONES
 ======================================== */
 
-.center-menu li i,
-.footer-menu li i {
+.center-menu li > a > i:first-child,
+.center-menu li > button > i:first-child,
+.footer-menu li > a > i:first-child,
+.footer-menu li > button > i:first-child {
   width: 22px;
+
+  flex-shrink: 0;
 
   display: flex;
   justify-content: center;
@@ -268,15 +366,86 @@
 }
 
 /* ========================================
-   FOOTER DO MENU
+   TEXTO
+======================================== */
+
+.center-menu li span,
+.footer-menu li span {
+  flex: 1;
+}
+
+/* ========================================
+   SETA
+======================================== */
+
+.center-menu .arrow,
+.footer-menu .arrow {
+  width: auto !important;
+
+  margin-left: auto;
+
+  color: #94a3b8 !important;
+
+  font-size: 13px !important;
+
+  transition: transform 0.2s ease;
+}
+
+.center-menu button:hover .arrow,
+.footer-menu button:hover .arrow {
+  color: #2a6db0 !important;
+
+  transform: translateX(3px);
+}
+
+/* ========================================
+   FOOTER
 ======================================== */
 
 .footer-menu {
+  flex-shrink: 0;
+
   padding: 14px;
 
   border-top: 1px solid #e5e7eb;
 
   background: #fafafa;
+}
+
+/* ========================================
+   LOGOUT
+======================================== */
+
+.footer-menu .btn-logout {
+  color: #dc2626;
+}
+
+.footer-menu .btn-logout:hover {
+  background: #fef2f2;
+
+  color: #dc2626;
+}
+
+.footer-menu .btn-logout i {
+  color: #dc2626 !important;
+}
+
+/* ========================================
+   SCROLLBAR
+======================================== */
+
+.center-menu::-webkit-scrollbar {
+  width: 5px;
+}
+
+.center-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.center-menu::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+
+  border-radius: 10px;
 }
 
 /* ========================================

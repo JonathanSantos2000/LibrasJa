@@ -16,49 +16,64 @@
     }
 
     @if (menu_level === "menu") {
-      <div class="menu-overlay" (click)="back_menu()"></div>
-      <aside class="component-menu">
-        <!-- Cabeçalho -->
+      <div class="menu-overlay" aria-hidden="true" (click)="close_menu()"></div>
+
+      <aside class="component-menu" aria-label="Menu principal">
         <div class="top-menu">
           <div class="user">
-            @if (isAuth) {
+            @if (isAuth && user) {
               <img
                 [src]="'http://localhost:5000/uploads/users/' + user.UsuImgPer"
                 [alt]="user.UsuNom"
                 loading="lazy"
               />
 
-              <h3>{{ firstName }}</h3>
+              <h3>
+                {{ firstName }}
+              </h3>
             } @else {
               <img
                 src="https://cdn-icons-png.flaticon.com/512/709/709699.png"
                 alt="Usuário"
+                loading="lazy"
               />
 
               <h3>Visitante</h3>
             }
           </div>
-
-          <button
-            class="btn-close-menu"
-            type="button"
-            aria-label="Fechar menu"
-            (click)="back_menu()"
-          >
-            <i class="bi bi-x-lg"></i>
-          </button>
+          @if (
+            menu_center === "sinais" ||
+            menu_center === "categorias" ||
+            menu_center === "config"
+          ) {
+            <button
+              class="btn-menu-action"
+              type="button"
+              aria-label="Voltar"
+              (click)="back_menu()"
+            >
+              <i class="bi bi-arrow-left"></i>
+            </button>
+          } @else {
+            <button
+              class="btn-menu-action"
+              type="button"
+              aria-label="Fechar menu"
+              (click)="close_menu()"
+            >
+              <i class="bi bi-x-lg"></i>
+            </button>
+          }
         </div>
-
-        <!-- Menu principal -->
-        <nav class="center-menu">
+        <nav class="center-menu" aria-label="Navegação principal">
           <ul>
             @switch (menu_center) {
-              <!-- Usuarios Comuns-->
               @case ("normal") {
                 <li>
                   <a [routerLink]="['/']" (click)="close_menu()">
                     <i class="bi bi-house"></i>
-                    <span>Home</span>
+
+                    <span> Home </span>
                   </a>
                 </li>
 
@@ -68,89 +83,148 @@
                     (click)="close_menu()"
                   >
                     <i class="bi bi-hand-index-thumb"></i>
-                    <span>Lista de Sinais</span>
+
+                    <span> Lista de Sinais </span>
                   </a>
                 </li>
               }
-              <!-- Adm Comuns-->
               @case ("admin") {
                 <li>
                   <a [routerLink]="['/']" (click)="close_menu()">
                     <i class="bi bi-house"></i>
-                    <span>Home</span>
+
+                    <span> Home </span>
                   </a>
                 </li>
 
-                <li (click)="menuSinal()">
-                  <a>
+                <li>
+                  <button type="button" (click)="menuSinal()">
                     <i class="bi bi-hand-index-thumb"></i>
-                    <span>Sinais</span></a
-                  >
+
+                    <span> Sinais </span>
+
+                    <i class="bi bi-chevron-right arrow"></i>
+                  </button>
                 </li>
-                <li (click)="menuCategorias()">
-                  <a>
+
+                <li>
+                  <button type="button" (click)="menuCategorias()">
                     <i class="bi bi-tags"></i>
-                    <span>Categorias</span>
+
+                    <span> Categorias </span>
+
+                    <i class="bi bi-chevron-right arrow"></i>
+                  </button>
+                </li>
+              }
+
+              <!-- ================================= -->
+              <!-- SINAIS -->
+              <!-- ================================= -->
+
+              @case ("sinais") {
+                <li>
+                  <a
+                    [routerLink]="['/sinais/sinais-new']"
+                    (click)="close_menu()"
+                  >
+                    <i class="bi bi-plus-circle"></i>
+
+                    <span> Adicionar Sinal </span>
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    [routerLink]="['/sinais/sinais-edit']"
+                    (click)="close_menu()"
+                  >
+                    <i class="bi bi-pencil-square"></i>
+
+                    <span> Editar Sinais </span>
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    [routerLink]="['/sinais/sinais-list']"
+                    (click)="close_menu()"
+                  >
+                    <i class="bi bi-list-ul"></i>
+
+                    <span> Listar Sinais </span>
                   </a>
                 </li>
               }
-              @case ("config") {
-                <li>
-                  <a
-                    [routerLink]="['/user/user-edit']"
-                    (click)="close_menu()"
-                  >
-                    <i class="bi bi-person"></i>
-                    <span>Editar Perfil</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    lista-user
-                    [routerLink]="['/user/user-list']"
-                    (click)="close_menu()"
-                  >
-                    <i class="bi bi-people"></i>
-                    <span>Lista de Usuários</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    [routerLink]="['/user/user-edit-password']"
-                    (click)="close_menu()"
-                  >
-                    <i class="bi bi-key"></i>
-                    <span>Alterar Senha</span>
-                  </a>
-                </li>
-              }
-              <!-- Menu Cômodos-->
+
+              <!-- ================================= -->
+              <!-- CATEGORIAS -->
+              <!-- ================================= -->
+
               @case ("categorias") {
                 <li>
                   <a
                     [routerLink]="['/categorias/categorias-new']"
                     (click)="close_menu()"
                   >
-                    <i class="bi bi-tags"></i>
-                    <span>Adicionar Categorias</span>
+                    <i class="bi bi-plus-circle"></i>
+
+                    <span> Adicionar Categoria </span>
                   </a>
                 </li>
+
                 <li>
                   <a
                     [routerLink]="['/categorias/categorias-edit']"
                     (click)="close_menu()"
                   >
-                    <i class="bi bi-tags"></i>
-                    <span>Editar Categorias</span>
+                    <i class="bi bi-pencil-square"></i>
+
+                    <span> Editar Categorias </span>
                   </a>
                 </li>
+
                 <li>
                   <a
                     [routerLink]="['/categorias/categorias-list']"
                     (click)="close_menu()"
                   >
-                    <i class="bi bi-tags"></i>
-                    <span>Listar Categorias</span>
+                    <i class="bi bi-list-ul"></i>
+
+                    <span> Listar Categorias </span>
+                  </a>
+                </li>
+              }
+
+              <!-- ================================= -->
+              <!-- CONFIGURAÇÕES -->
+              <!-- ================================= -->
+
+              @case ("config") {
+                <li>
+                  <a [routerLink]="['/user/user-edit']" (click)="close_menu()">
+                    <i class="bi bi-person"></i>
+
+                    <span> Editar Perfil </span>
+                  </a>
+                </li>
+
+                <li>
+                  <a [routerLink]="['/user/user-list']" (click)="close_menu()">
+                    <i class="bi bi-people"></i>
+
+                    <span> Lista de Usuários </span>
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    [routerLink]="['/user/user-edit-password']"
+                    (click)="close_menu()"
+                  >
+                    <i class="bi bi-key"></i>
+
+                    <span> Alterar Senha </span>
                   </a>
                 </li>
               }
@@ -158,38 +232,47 @@
           </ul>
         </nav>
 
-        <!-- Rodapé -->
+        <!-- ==================================== -->
+        <!-- RODAPÉ -->
+        <!-- ==================================== -->
+
         <div class="footer-menu">
           <ul>
             @if (!isAuth) {
               <li>
                 <a [routerLink]="['/auth/login']" (click)="close_menu()">
                   <i class="bi bi-box-arrow-in-right"></i>
-                  <span>Entrar</span>
+
+                  <span> Entrar </span>
                 </a>
               </li>
 
               <li>
                 <a [routerLink]="['/auth/registro']" (click)="close_menu()">
                   <i class="bi bi-person-plus"></i>
-                  <span>Cadastro</span>
+
+                  <span> Cadastro </span>
                 </a>
               </li>
             }
 
             @if (isAuth) {
               <li>
-                <a (click)="menuConfigUser()">
+                <button type="button" (click)="menuConfigUser()">
                   <i class="bi bi-gear"></i>
-                  <span>Configurar</span>
-                </a>
+
+                  <span> Configurar </span>
+
+                  <i class="bi bi-chevron-right arrow"></i>
+                </button>
               </li>
 
               <li>
-                <a (click)="logout()">
+                <button type="button" class="btn-logout" (click)="logout()">
                   <i class="bi bi-box-arrow-right"></i>
-                  <span>Sair</span>
-                </a>
+
+                  <span> Sair </span>
+                </button>
               </li>
             }
           </ul>
