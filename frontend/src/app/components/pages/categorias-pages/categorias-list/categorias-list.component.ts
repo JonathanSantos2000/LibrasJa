@@ -26,8 +26,8 @@ export class CategoriasListComponent implements OnInit {
     this.loadCategorias();
   }
 
+  
   // Pagination properties
-
   loadCategorias(): void {
     this.categoriasService.getCategoriasPaginated(this.page).subscribe({
       next: (response) => {

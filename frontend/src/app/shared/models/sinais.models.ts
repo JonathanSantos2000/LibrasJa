@@ -5,5 +5,10 @@ export class Sinais {
   SinAut!: string;
   SinAutNom!: string;
   SinLink!: string;
-  SinTag!: string;
+  SinCats!: ICategorias[];
+}
+
+interface ICategorias {
+  SinCatId: string;
+  SinCatNon: string;
 }
