@@ -1,0 +1,248 @@
+.furniture__container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.us_title {
+  text-align: center;
+  color: #9a8478;
+}
+.us_title > h1 {
+  font-family: "Imperial Script", sans-serif;
+  font-size: 45px;
+}
+
+.separador_flor {
+  display: flex;
+  justify-content: center;
+  height: 60px;
+}
+
+.separador_flor > img {
+  width: 150px;
+  height: 35px;
+  border-radius: 25%;
+}
+
+/* CARD */
+
+.conteiner__cards {
+  display: grid;
+  grid-template: repeat(auto-fit, minmax(320px, 1fr)) / repeat(
+      auto-fit,
+      minmax(320px, 1fr)
+    );
+}
+.gift-card {
+  width: 100%;
+  max-width: 380px;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* IMAGEM */
+
+.image-container {
+  position: relative;
+}
+
+.image-container img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+
+/* BADGES */
+
+.category-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+
+  background: white;
+  color: #111827;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  padding: 6px 10px;
+  border-radius: 50px;
+}
+
+.status-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  padding: 6px 10px;
+  border-radius: 50px;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.available {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.almost {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.completed {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+/* CONTEÚDO */
+
+.content {
+  padding: 18px;
+}
+
+.title {
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+  color: #111827;
+}
+
+.values {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.label {
+  display: block;
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.values strong {
+  font-size: 1rem;
+}
+
+.remaining {
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+/* PROGRESSO */
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.progress-bar {
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: 0.4s;
+}
+
+/* 0-30% */
+.progress-fill.low {
+  background: #60a5fa;
+}
+
+/* 31-70% */
+.progress-fill.medium {
+  background: #2563eb;
+}
+
+/* 71-99% */
+.progress-fill.high {
+  background: #22c55e;
+}
+
+/* 100% */
+.progress-fill.completed {
+  background: #16a34a;
+}
+
+/* BOTÕES */
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-contribute {
+  flex: 1;
+
+  border: none;
+  background: #111827;
+  color: white;
+
+  padding: 14px;
+  border-radius: 14px;
+
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-cart {
+  width: 52px;
+  border: none;
+
+  background: #f3f4f6;
+
+  border-radius: 14px;
+  cursor: pointer;
+
+  font-size: 1.2rem;
+}
+
+/* TAGS DOS CÔMODOS */
+
+.room-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.room-tag {
+  background: #eff6ff;
+  color: #2563eb;
+
+  border: 1px solid #bfdbfe;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  transition: 0.2s;
+}
+
+.room-tag:hover {
+  background: #dbeafe;
+}

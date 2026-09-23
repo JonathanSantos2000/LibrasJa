@@ -1,0 +1,107 @@
+<div class="conteinner__register">
+  <div class="form"></div>
+  <form [formGroup]="furnituresForm" (ngSubmit)="submit()">
+    <div class="title_logo">
+      <div class="separador_flor">
+        <img src="assets/images/flor.png" alt="Minha Foto" />
+      </div>
+      <h3>Cadastro de Presentes.</h3>
+    </div>
+    <!--  -->
+    <div class="gift-image-container">
+      <label class="gift-image-upload">
+        <input
+          type="file"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          hidden
+        />
+
+        <!--  -->
+        @if (imagePreview) {
+        <img [src]="imagePreview" alt="Produto" class="gift-preview" />
+        }
+        <!--  -->
+        @if (!imagePreview) {
+        <div class="upload-placeholder">
+          <span class="upload-icon">📷</span>
+          <span>Adicionar foto do presente</span>
+        </div>
+        }
+      </label>
+    </div>
+    <!-- Nome -->
+    <text-input
+      [control]="fc['FurDes']"
+      [showErrorWhen]="isSubmitted"
+      type="text"
+      label="Nome Produto:"
+      exibir_label="0"
+      customClass="normal__input"
+    ></text-input>
+
+    <!-- Valor -->
+    <text-input
+      [control]="fc['FurVlrIte']"
+      [showErrorWhen]="isSubmitted"
+      type="number"
+      label="VALOR DO PRODUTO R$:"
+      exibir_label="0"
+      customClass="normal__input"
+    ></text-input>
+
+    <!-- Comodos -->
+
+    <!-- Comodos -->
+    <div class="select">
+      <label>Selecione os Cômodos:</label><br />
+
+      <div class="search">
+        <text-input
+          [control]="fc['FurRoomsSearch']"
+          [showErrorWhen]="isSubmitted"
+          type="text"
+          label="Nome do Cômodo:"
+          exibir_label="0"
+          customClass="search__input"
+        ></text-input>
+
+        <button
+          type="button"
+          (click)="buscarItensPorNome()"
+          class="search__button"
+        >
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+
+      <select (change)="onRoomSelect($event)" class="comodo_select">
+        <option value="">SELECIONE O CÔMODO</option>
+
+        @for (room of roomsFiltered; track room.RooNom) {
+        <option [value]="room.RooNom">
+          {{ room.RooNom }}
+        </option>
+        }
+      </select>
+
+      <!-- Tags dos cômodos selecionados -->
+      @if(fc['FurRooms'].value?.length){
+      <div class="selected-rooms">
+        @for(room of fc['FurRooms'].value; track room.RooNom){
+        <div class="room-tag">
+          <span>{{ room.RooNom }}</span>
+
+          <button type="button" (click)="removeRoom(room)">
+            <i class="bi bi-x"></i>
+          </button>
+        </div>
+        }
+      </div>
+      }
+    </div>
+    <div class="btns">
+      <button type="submit">Adicionar</button>
+    </div>
+  </form>
+</div>

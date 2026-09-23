@@ -1,0 +1,72 @@
+<div class="furniture__container">
+  <div class="us_title">
+    <h1>Lista de Presentes</h1>
+  </div>
+  <div class="conteiner__cards">
+    @for (item of furnitures; track $index) {
+      <div class="gift-card">
+        <div class="image-container">
+          <img
+            [src]="'http://localhost:5000/uploads/furniture/' + item.FurImg"
+            [alt]="item.FurDes"
+            loading="lazy"
+          />
+
+          <span class="category-badge">Decoração</span>
+
+          <span class="status-badge available"> Disponível </span>
+        </div>
+
+        <div class="content">
+          <h2 class="title">{{ item.FurDes }}</h2>
+
+          <div class="room-tags">
+            @for (comodo of item.FurRooms; track $index) {
+              <span class="room-tag">{{ comodo.FurComDes }}</span>
+            }
+          </div>
+
+          <div class="values">
+            <div>
+              <span class="label">Valor</span>
+              <!-- <strong>{{ item.FurVlrIte | currency : "BRL" }}</strong> -->
+            </div>
+
+            <div>
+              <span class="label">Arrecadado</span>
+              <!-- <strong>{{ item.FurVlrAre | currency : "BRL" }}</strong> -->
+            </div>
+          </div>
+
+          <div class="remaining">
+            <!-- Faltam <strong>{{ getRemainingValue(item.FurVlrIte, item.FurVlrAre) | currency : "BRL" }}</strong> para completar o presente -->
+          </div>
+
+          <div class="progress-info">
+            <span>Progresso</span>
+            <span>{{ item.FurVlrPer }}%</span>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress-fill low" style="width: 10%"></div>
+          </div>
+
+          <div class="actions">
+            <button class="btn-contribute">Contribuir Agora</button>
+
+            <button class="btn-cart">🛒</button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+  <!--   <div class="pagination">
+    <button (click)="previousPage()" [disabled]="page === 1">← Anterior</button>
+
+    <span>Página {{ page }} de {{ totalPages }}</span>
+
+    <button (click)="nextPage()" [disabled]="page === totalPages">
+      Próxima →
+    </button>
+  </div>-->
+</div>
