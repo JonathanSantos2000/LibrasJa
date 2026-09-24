@@ -7,7 +7,7 @@ import { UserService } from '../../../services/user.service';
 
 type MenuLevel = 'off' | 'menu';
 
-type MenuCenter = 'normal' | 'admin' | 'sinais' | 'categorias' | 'config';
+type MenuCenter = 'normal' | 'admin' | 'posts' | 'categorias' | 'config';
 
 @Component({
   selector: 'app-menu',
@@ -102,10 +102,10 @@ export class MenuComponent implements OnInit {
   }
 
   /**
-   * Abre o menu de sinais.
+   * Abre o menu de Posts.
    */
-  menuSinal(): void {
-    this.menu_center = 'sinais';
+  menuPosts(): void {
+    this.menu_center = 'posts';
   }
 
   /**

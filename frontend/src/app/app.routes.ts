@@ -5,7 +5,7 @@ import { CategoriasNewComponent } from './components/pages/categorias-pages/cate
 import { CategoriasEditComponent } from './components/pages/categorias-pages/categorias-edit/categorias-edit.component';
 import { CategoriasListComponent } from './components/pages/categorias-pages/categorias-list/categorias-list.component';
 import { UserListComponent } from './components/pages/auth/user/user-list/user-list.component';
-import { SinaisNewComponent } from './components/pages/sinais-pages/sinais-new/sinais-new.component';
+import { PostNewComponent } from './components/pages/post-pages/post-new/post-new.component';
 
 export const routes: Routes = [
   /* { path: '', component: HomeComponent }, */
@@ -17,6 +17,6 @@ export const routes: Routes = [
   { path: 'categorias/categorias-new', component: CategoriasNewComponent },
   { path: 'categorias/categorias-edit', component: CategoriasEditComponent },
   { path: 'categorias/categorias-list', component: CategoriasListComponent },
-  /*categorias*/
-  {path:'sinais/sinais-new',component: SinaisNewComponent},
+  /*posts*/
+  {path:'posts/posts-new',component: PostNewComponent},
 ];

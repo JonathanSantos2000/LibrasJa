@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 
 @Component({
   imports: [CommonModule],
@@ -14,7 +14,7 @@ export class InputGroupComponent {
   @Input()
   bgColor: string = 'none';
   @Input()
-  exibir_label: number = 0;
+  exibir_label: string = 'none';
   @Input()
   customClass: string = '';
 }

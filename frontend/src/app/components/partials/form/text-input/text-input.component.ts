@@ -25,6 +25,8 @@ export class TextInputComponent {
   type: 'text' | 'password' | 'email' | 'number' = 'text';
   @Input()
   customClass: string = '';
+  @Input()
+  exibir_label: string = 'none';
 
   get formControl() {
     return this.control as FormControl;

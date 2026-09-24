@@ -1,0 +1,90 @@
+<div class="conteinner__posts-new">
+  <div class="form">
+    <form [formGroup]="postsForm" (ngSubmit)="submit()">
+      <div class="title_logo">
+        <h3>Nova Postagem.</h3>
+      </div>
+      <!-- Titulo -->
+      <text-input
+        [control]="fc['PostTit']"
+        [showErrorWhen]="isSubmitted"
+        type="text"
+        label="Titulo:"
+        exibir_label="show"
+        customClass="normal__input"
+      ></text-input>
+
+      <!-- Descrição -->
+      <text-input
+        [control]="fc['PostDes']"
+        [showErrorWhen]="isSubmitted"
+        type="text"
+        label="Descrição:"
+        exibir_label="show"
+        customClass="normal__input"
+      ></text-input>
+
+      <!-- Link -->
+      <text-input
+        [control]="fc['PostLink']"
+        [showErrorWhen]="isSubmitted"
+        type="text"
+        label="Link:"
+        exibir_label="none"
+        customClass="normal__input"
+      ></text-input>
+
+      <!-- Categorias -->
+      <div class="select">
+        <label>Selecione as categorias:</label><br />
+
+        <div class="search">
+          <text-input
+            [control]="fc['PostCatsSearch']"
+            [showErrorWhen]="isSubmitted"
+            type="text"
+            label="Nome da Categoria:"
+            exibir_label="none"
+            customClass="search__input"
+          ></text-input>
+
+          <button
+            type="button"
+            (click)="buscarItensPorNome()"
+            class="search__button"
+          >
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+
+        <select (change)="onCategoriaSelect($event)" class="categoria_select">
+          <option value="">SELECIONE A CATEGORIA</option>
+
+          @for (categoria of categoriasFiltered; track categoria.CatNom) {
+            <option [value]="categoria.CatNom">
+              {{ categoria.CatNom }}
+            </option>
+          }
+        </select>
+
+        <!-- Tags das categorias selecionadas -->
+        @if (fc["PostCats"].value?.length) {
+          <div class="selected-categorias">
+            @for (categoria of fc["PostCats"].value; track categoria.CatNom) {
+              <div class="categoria-tag">
+                <span>{{ categoria.CatNom }}</span>
+
+                <button type="button" (click)="removeCategoria(categoria)">
+                  <i class="bi bi-x"></i>
+                </button>
+              </div>
+            }
+          </div>
+        }
+      </div>
+      <div class="btns">
+        <button type="submit">Adicionar</button>
+      </div>
+    </form>
+  </div>
+</div>

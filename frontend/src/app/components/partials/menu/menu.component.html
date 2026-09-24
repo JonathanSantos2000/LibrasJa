@@ -42,7 +42,7 @@
             }
           </div>
           @if (
-            menu_center === "sinais" ||
+            menu_center === "posts" ||
             menu_center === "categorias" ||
             menu_center === "config"
           ) {
@@ -79,12 +79,12 @@
 
                 <li>
                   <a
-                    [routerLink]="['/sinais/lista-de-sinais']"
+                    [routerLink]="['/posts/posts-list']"
                     (click)="close_menu()"
                   >
                     <i class="bi bi-hand-index-thumb"></i>
 
-                    <span> Lista de Sinais </span>
+                    <span> Lista de Posts </span>
                   </a>
                 </li>
               }
@@ -98,10 +98,10 @@
                 </li>
 
                 <li>
-                  <button type="button" (click)="menuSinal()">
+                  <button type="button" (click)="menuPosts()">
                     <i class="bi bi-hand-index-thumb"></i>
 
-                    <span> Sinais </span>
+                    <span> Posts </span>
 
                     <i class="bi bi-chevron-right arrow"></i>
                   </button>
@@ -119,40 +119,40 @@
               }
 
               <!-- ================================= -->
-              <!-- SINAIS -->
+              <!-- POSTS -->
               <!-- ================================= -->
 
-              @case ("sinais") {
+              @case ("posts") {
                 <li>
                   <a
-                    [routerLink]="['/sinais/sinais-new']"
+                    [routerLink]="['/posts/posts-new']"
                     (click)="close_menu()"
                   >
                     <i class="bi bi-plus-circle"></i>
 
-                    <span> Adicionar Sinal </span>
+                    <span> Adicionar Post </span>
                   </a>
                 </li>
 
                 <li>
                   <a
-                    [routerLink]="['/sinais/sinais-edit']"
+                    [routerLink]="['/posts/posts-edit']"
                     (click)="close_menu()"
                   >
                     <i class="bi bi-pencil-square"></i>
 
-                    <span> Editar Sinais </span>
+                    <span> Editar Posts </span>
                   </a>
                 </li>
 
                 <li>
                   <a
-                    [routerLink]="['/sinais/sinais-list']"
+                    [routerLink]="['/posts/posts-list']"
                     (click)="close_menu()"
                   >
                     <i class="bi bi-list-ul"></i>
 
-                    <span> Listar Sinais </span>
+                    <span> Listar Posts </span>
                   </a>
                 </li>
               }

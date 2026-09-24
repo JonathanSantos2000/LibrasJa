@@ -15,7 +15,7 @@ export const GET_ALL_CATEGORIAS_PAGINATED_URL =
 // upload URLs
 export const UPLOAD_IMAGE_URL = BASE_URL + '/uploads/';
 
-// SINAIS URLs
-export const SINAIS_REGISTER_URL = BASE_URL + '/api/sinais/register';
-export const GET_ALL_SINAIS_URL = BASE_URL + '/api/sinais/';
-export const GET_ALL_SINAIS_PAGINATED_URL = BASE_URL + '/api/sinais/paginated';
+// Post URLs
+export const POST_REGISTER_URL = BASE_URL + '/api/posts/register';
+export const GET_ALL_POSTS_URL = BASE_URL + '/api/posts/';
+export const GET_ALL_POSTS_PAGINATED_URL = BASE_URL + '/api/posts/paginated';

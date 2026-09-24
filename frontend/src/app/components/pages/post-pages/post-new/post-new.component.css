@@ -1,0 +1,135 @@
+.conteinner__posts-new {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1px;
+}
+
+.title_logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #4f52d1;
+}
+.title_logo > h3 {
+  font-family: "Imperial Script", sans-serif;
+  font-size: 45px;
+}
+
+.btn {
+  flex: 1;
+  border: none;
+  padding: 10px 0;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  background: transparent;
+}
+
+.btns button {
+  width: 100%;
+  color: #fff;
+  border: none;
+  padding: 10px 0;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  background: linear-gradient(90deg, #4f52d1, #4fa3d1);
+}
+
+.select label {
+  font-family: "Playfair Display", sans-serif;
+  font-size: 16px;
+}
+
+.select .search {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.select .search text-input {
+  flex: 1;
+}
+
+/* remove borda direita pra juntar com botão */
+.select .search text-input .container__input-group {
+  border-radius: 10px 0 0 10px;
+  border-right: none;
+  margin-bottom: 0;
+}
+
+/* garante altura igual */
+.select .search text-input .content {
+  height: 3rem;
+}
+
+/* botão integrado */
+.select .search button {
+  height: 3rem;
+  padding: 0 1rem;
+
+  border: 1px solid #808080;
+  border-left: none;
+
+  background: linear-gradient(90deg, #4f52d1, #4fa3d1);
+  color: #fff;
+
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.select .search button:hover {
+  filter: brightness(0.95);
+}
+
+/* foco integrado (efeito único) */
+.select .search:focus-within text-input .container__input-group {
+  border-color: #4f52d1;
+  box-shadow: 0 0 0 2px rgba(79, 82, 209, 0.2);
+}
+
+.categoria_select {
+  width: 100%;
+  height: 2.7rem;
+  padding: 0 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+}
+
+.selected-categorias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.categoria-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #f3f3f3;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.categoria-tag button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
