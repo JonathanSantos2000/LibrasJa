@@ -6,6 +6,7 @@ import cors from "cors";
 import { dbConnect } from "./configs/database.config";
 import userRoutes from "./routers/user.router";
 import categoriasRoutes from "./routers/categorias.router";
+import postsRoutes from "./routers/post.router";
 import path from "path";
 
 dbConnect();
@@ -23,6 +24,7 @@ app.use(
 app.use("/api/user", userRoutes);
 
 app.use("/api/categorias", categoriasRoutes);
+app.use("/api/posts", postsRoutes);
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 const port = 5000;
