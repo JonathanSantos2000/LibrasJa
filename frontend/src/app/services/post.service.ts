@@ -16,14 +16,17 @@ export class PostsService {
   private readonly http = inject(HttpClient);
   private readonly toastr = inject(ToastService);
 
-  CreatePost(formData: FormData): Observable<Post> {
-    return this.http.post<Post>(POST_REGISTER_URL, formData).pipe(
+  CreatePost(post: Partial<Post>): Observable<Post> {
+    return this.http.post<Post>(POST_REGISTER_URL, post).pipe(
       tap({
         next: (post) => {
           this.toastr.success(`Post: ${post.PostTit} registrado com sucesso`);
         },
         error: (errorResponse) => {
-          this.toastr.error(errorResponse.error, ' registro falhou');
+          this.toastr.error(
+            errorResponse.error?.error || 'Registro falhou',
+            'Erro',
+          );
         },
       }),
     );

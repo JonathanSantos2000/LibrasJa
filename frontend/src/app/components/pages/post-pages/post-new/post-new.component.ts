@@ -24,7 +24,7 @@ import { Observable } from 'rxjs';
 export class PostNewComponent implements OnInit {
   postsForm!: FormGroup;
   categoriasForm!: FormGroup;
-  user!: User;
+  user: User | null = null;
 
   isSubmitted: boolean = false;
   constructor(
@@ -33,7 +33,11 @@ export class PostNewComponent implements OnInit {
     private userService: UserService,
     private postsService: PostsService,
     private cdr: ChangeDetectorRef,
-  ) {}
+  ) {
+    this.userService.user$.subscribe((user) => {
+      this.user = user;
+    });
+  }
 
   ngOnInit(): void {
     this.postsForm = this.formBuilder.group({
@@ -58,8 +62,48 @@ export class PostNewComponent implements OnInit {
     return this.categoriasForm.controls;
   }
 
-  submit() {}
+  submit() {
+    this.isSubmitted = true;
 
+    if (this.postsForm.invalid) {
+      return;
+    }
+
+    if (!this.user?._id) {
+      console.error('Usuário não autenticado.');
+      return;
+    }
+
+    const post = {
+      PostTit: this.fc['PostTit'].value,
+      PostDes: this.fc['PostDes'].value,
+      PostLink: this.fc['PostLink'].value,
+
+      PostCats: this.fc['PostCats'].value.map((categoria: Categorias) => ({
+        PostCatId: categoria._id,
+        PostCatNon: categoria.CatNom,
+      })),
+
+      PostAut: this.user._id,
+      PostAutNom: this.user.UsuNom,
+    };
+
+    console.log('POST ENVIADO:', post);
+
+    this.postsService.CreatePost(post).subscribe({
+      next: () => {
+        this.isSubmitted = false;
+        this.postsForm.reset();
+        this.categoriasForm.reset();
+        this.selectedCategoria = {} as Categorias;
+      },
+      error: (error) => {
+        console.error('ERRO AO CRIAR POST:', error);
+        console.error('STATUS:', error.status);
+        console.error('RESPOSTA DO BACKEND:', error.error);
+      },
+    });
+  }
   // ---- categorias search ----
   categorias: Categorias[] = [];
   categoriaName: string = '';
