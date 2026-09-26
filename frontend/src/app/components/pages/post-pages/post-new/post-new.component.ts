@@ -142,7 +142,7 @@ export class PostNewComponent implements OnInit {
     const selectedCategorias = [...this.fc['PostCats'].value];
 
     const alreadyExists = selectedCategorias.some(
-      (c) => c.CatNom === categoria.CatNom,
+      (c) => c._id === categoria._id,
     );
 
     if (!alreadyExists) {
@@ -150,14 +150,32 @@ export class PostNewComponent implements OnInit {
       this.fc['PostCats'].setValue(selectedCategorias);
     }
 
+    // Limpa a busca
+    this.fc['PostCatsSearch'].setValue('');
+
+    // Mostra novamente todas, menos as selecionadas
+    this.atualizarCategoriasFiltered();
+
+    // Reseta o select
     (event.target as HTMLSelectElement).value = '';
   }
 
-  removeCategoria(categoriaToRemove: any) {
+  removeCategoria(categoriaToRemove: Categorias) {
     const categorias = this.fc['PostCats'].value.filter(
-      (categoria: any) => categoria.CatNom !== categoriaToRemove.CatNom,
+      (categoria: Categorias) => categoria._id !== categoriaToRemove._id,
     );
 
     this.fc['PostCats'].setValue(categorias);
+
+    this.atualizarCategoriasFiltered();
+  }
+
+  atualizarCategoriasFiltered() {
+    const selecionadas = this.fc['PostCats'].value as Categorias[];
+
+    this.categoriasFiltered = this.categorias.filter(
+      (categoria) =>
+        !selecionadas.some((selecionada) => selecionada._id === categoria._id),
+    );
   }
 }

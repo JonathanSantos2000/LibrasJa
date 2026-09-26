@@ -8,7 +8,7 @@ const router: Router = Router();
 router.post(
   "/register",
   authMiddleware,
-  roleMiddleware([1]),
+  roleMiddleware([1, 2]),
   postController.register,
 );
 
