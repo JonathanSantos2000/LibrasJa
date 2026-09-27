@@ -81,7 +81,7 @@ export class PostNewComponent implements OnInit {
 
       PostCats: this.fc['PostCats'].value.map((categoria: Categorias) => ({
         PostCatId: categoria._id,
-        PostCatNon: categoria.CatNom,
+        PostCatNom: categoria.CatNom,
       })),
 
       PostAut: this.user._id,

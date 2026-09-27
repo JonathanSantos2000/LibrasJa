@@ -7,7 +7,7 @@ import { Post } from '../shared/models/post.models';
 import { PostPagination } from '../shared/interfaces/IPostginated';
 import {
   GET_ALL_POSTS_PAGINATED_URL,
-  GET_ALL_POSTS_URL,
+  POST_ID_URL,
   POST_REGISTER_URL,
 } from '../shared/constants/urls';
 
@@ -36,5 +36,9 @@ export class PostsService {
     return this.http.get<PostPagination>(
       `${GET_ALL_POSTS_PAGINATED_URL}?page=${page}&limit=10`,
     );
+  }
+
+  GetPostId(id: string): Observable<Post> {
+    return this.http.get<Post>(`${POST_ID_URL.replace(':id', id)}`);
   }
 }

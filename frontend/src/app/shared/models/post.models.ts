@@ -10,5 +10,5 @@ export class Post {
 
 interface ICategorias {
   PostCatId: string;
-  PostCatNon: string;
+  PostCatNom: string;
 }

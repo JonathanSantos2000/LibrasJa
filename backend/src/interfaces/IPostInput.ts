@@ -2,7 +2,7 @@ import { Types } from "mongoose";
 
 interface ICategorias {
   FurComId: Types.ObjectId;
-  PostCatNon: string;
+  PostCatNom: string;
 }
 export interface IPostInput {
   PostTit: string;

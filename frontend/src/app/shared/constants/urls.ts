@@ -17,5 +17,5 @@ export const UPLOAD_IMAGE_URL = BASE_URL + '/uploads/';
 
 // Post URLs
 export const POST_REGISTER_URL = BASE_URL + '/api/posts/register';
-export const GET_ALL_POSTS_URL = BASE_URL + '/api/posts/';
 export const GET_ALL_POSTS_PAGINATED_URL = BASE_URL + '/api/posts/paginated';
+export const POST_ID_URL = BASE_URL + '/api/posts/id/:id';

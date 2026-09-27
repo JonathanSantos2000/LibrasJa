@@ -2,7 +2,7 @@ import { Document, model, Schema, Types } from "mongoose";
 
 interface ICategorias {
   FurComId: Types.ObjectId;
-  PostCatNon: string;
+  PostCatNom: string;
 }
 export interface IPost extends Document {
   PostTit: string;
@@ -41,7 +41,7 @@ const PostSchema = new Schema<IPost>(
           type: String,
           required: true,
         },
-        PostCatNon: {
+        PostCatNom: {
           type: String,
           required: true,
         },

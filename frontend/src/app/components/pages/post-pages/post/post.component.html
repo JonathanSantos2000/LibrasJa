@@ -1,0 +1,69 @@
+@if (post) {
+  <main class="video-page">
+    <!-- VÍDEO -->
+    <section class="video-player">
+      <iframe
+        [src]="youtubeUrl"
+        title="Vídeo do LibrasJá"
+        allow="
+          accelerometer;
+          autoplay;
+          clipboard-write;
+          encrypted-media;
+          gyroscope;
+          picture-in-picture;
+          web-share;
+          fullscreen;
+        "
+        allowfullscreen="true"
+      >
+      </iframe>
+    </section>
+
+    <!-- INFORMAÇÕES DO VÍDEO -->
+    <section class="video-content">
+      <h1>{{ post.PostTit }}</h1>
+
+      <div class="video-meta">
+        <span>12.458 visualizações</span>
+
+        <span>•</span>
+
+        <span>25/09/2026</span>
+      </div>
+
+      <!-- AÇÕES -->
+      <div class="video-actions">
+        <button>
+          <i class="bi bi-hand-thumbs-up"></i>
+          <span>1,2 mil</span>
+        </button>
+
+        <button>
+          <i class="bi bi-hand-thumbs-down"></i>
+        </button>
+      </div>
+
+      <!-- CRIADOR -->
+      <div class="channel">
+        <img src="assets/images/Foto-NI.jpg" alt="LibrasJá" />
+
+        <div class="channel-info">
+          <strong>{{ post.PostAutNom }}</strong>
+        </div>
+      </div>
+
+      <!-- DESCRIÇÃO -->
+      <div class="description">
+        <p>
+          {{ post.PostDes }}
+        </p>
+      </div>
+    </section>
+  </main>
+} @else {
+  <div class="loading">
+    <i class="bi bi-arrow-repeat"></i>
+    Carregando vídeo...
+  </div>
+}

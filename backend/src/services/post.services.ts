@@ -1,3 +1,4 @@
+import { IPaginacaoInput } from "../interfaces/IPaginacaoInput";
 import { IPostInput } from "../interfaces/IPostInput";
 import Post, { IPost } from "../models/post.model";
 
@@ -22,4 +23,20 @@ export const createPost = async ({
     PostCats,
   });
   return await post.save();
+};
+
+export const getPostsPaginated = async ({
+  skip,
+  limit,
+}: IPaginacaoInput): Promise<IPost[]> => {
+  return Post.find().sort({ PostTit: 1 }).skip(skip).limit(limit);
+};
+
+export const countPosts = async () => {
+  return Post.countDocuments();
+};
+
+export const getPostId = async (id: string): Promise<IPost | null> => {
+  const post = await Post.findById(id);
+  return post;
 };

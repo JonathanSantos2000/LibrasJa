@@ -1,0 +1,45 @@
+<div class="furniture__container">
+  <div class="us_title">
+    <h1>Lista de Posts</h1>
+  </div>
+  <div class="conteiner__cards">
+    @for (item of posts; track $index) {
+      <a [routerLink]="['/posts/', item._id]">
+        <div class="gift-card">
+          <div class="image-container">
+            <img
+              [src]="'assets/images/Foto-NI.jpg'"
+              [alt]="item.PostTit"
+              loading="lazy"
+            />
+
+            <span class="category-badge">{{
+              item.PostCats[0].PostCatNom
+            }}</span>
+
+            <span class="status-badge available"> {{ item.PostAutNom }} </span>
+          </div>
+
+          <div class="content">
+            <h2 class="title">{{ item.PostTit }}</h2>
+
+            <div class="room-tags">
+              @for (comodo of item.PostCats; track $index) {
+                <span class="room-tag">{{ comodo.PostCatNom }}</span>
+              }
+            </div>
+          </div>
+        </div>
+      </a>
+    }
+  </div>
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="page === 1">← Anterior</button>
+
+    <span>Página {{ page }} de {{ totalPages }}</span>
+
+    <button (click)="nextPage()" [disabled]="page === totalPages">
+      Próxima →
+    </button>
+  </div>
+</div>

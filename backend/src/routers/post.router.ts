@@ -12,4 +12,7 @@ router.post(
   postController.register,
 );
 
+router.get("/paginated", postController.getPostsPaginated);
+
+router.get("/id/:id", postController.getPostId);
 export default router;
