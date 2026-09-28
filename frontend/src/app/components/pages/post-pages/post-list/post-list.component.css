@@ -2,10 +2,10 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
+  padding: 81px 20px;
   justify-content: center;
   align-items: center;
-  padding: 20px;
 }
 
 .us_title {

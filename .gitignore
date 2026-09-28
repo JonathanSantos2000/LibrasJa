@@ -1,5 +1,28 @@
+# Ambiente
 .env
-backend/node_modules
-backend/src/uploads/users
-backend/src/uploads/categorias
-Ideias
+*.env
+
+# Dependências
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# Uploads
+backend/uploads/users/*
+backend/uploads/categorias/*
+backend/uploads/posts/*
+
+backend/src/uploads/users/*
+backend/src/uploads/categorias/*
+backend/src/uploads/posts/*
+
+# Ideias
+Ideias/
+
+# Build
+backend/built/
+frontend/dist/
+
+# Logs
+*.log
+npm-debug.log*
