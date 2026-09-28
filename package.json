@@ -2,7 +2,7 @@
     "name": "LibrasJa",
     "version": "1.0.0",
     "engines": {
-        "node": ">=18 <19"
+        "node": ">=22.22.3 <23"
     },
     "scripts": {
         "dev": "cd backend && npm start & cd frontend && npm start",
