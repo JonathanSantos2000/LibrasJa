@@ -1,0 +1,13 @@
+{
+    "name": "LibrasJa",
+    "version": "1.0.0",
+    "engines": {
+        "node": ">=18 <19"
+    },
+    "scripts": {
+        "dev": "cd backend && npm start & cd frontend && npm start",
+        "start": "cd backend && node built/main.js",
+        "prebuild": "cd backend && npm run build",
+        "build": "cd frontend && npm run build"
+    }
+}

@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "cd src && nodemon --exec ts-node main.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node built/main.js",
+    "dev": "cd src && nodemon --exec ts-node main.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
