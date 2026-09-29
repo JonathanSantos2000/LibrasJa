@@ -34,6 +34,11 @@ const PostSchema = new mongoose_1.Schema({
             },
         },
     ],
+    PostImg: {
+        type: String,
+        default: "",
+    },
+    PostDatCad: { type: Date, default: Date.now },
 }, {
     timestamps: true,
 });

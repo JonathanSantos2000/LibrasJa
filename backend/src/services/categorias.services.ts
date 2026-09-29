@@ -36,7 +36,6 @@ export const countCategorias = async () => {
 };
 
 export const addQtdPost = async (categoriaId: string): Promise<ICategoria> => {
-  console.log("ID RECEBIDO:", categoriaId);
 
   const categoriaAntes = await Categoria.findById(categoriaId);
 

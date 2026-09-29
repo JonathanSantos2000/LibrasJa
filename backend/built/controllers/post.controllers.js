@@ -35,13 +35,33 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPostId = exports.getPostsPaginated = exports.register = void 0;
 const postService = __importStar(require("../services/post.services"));
+const userService = __importStar(require("../services/user.services"));
+const categoriasService = __importStar(require("../services/categorias.services"));
 const register = async (req, res) => {
     try {
-        const post = await postService.createPost(req.body);
+        const { PostTit, PostDes, PostAut, PostAutNom, PostLink, PostCats } = req.body;
+        const file = req.file;
+        const PostImg = file ? file.filename : "";
+        const post = await postService.createPost({
+            PostTit,
+            PostDes,
+            PostAut,
+            PostAutNom,
+            PostLink,
+            PostCats: JSON.parse(PostCats),
+            PostImg,
+        });
+        await userService.addQtdPost(PostAut);
+        const categorias = JSON.parse(PostCats);
+        for (const categoria of categorias) {
+            await categoriasService.addQtdPost(categoria.PostCatId);
+        }
         res.status(201).json(post);
     }
     catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(400).json({
+            error: error.message,
+        });
     }
 };
 exports.register = register;

@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPostId = exports.countPosts = exports.getPostsPaginated = exports.createPost = void 0;
 const post_model_1 = __importDefault(require("../models/post.model"));
-const createPost = async ({ PostTit, PostDes, PostAut, PostAutNom, PostLink, PostCats, }) => {
+const createPost = async ({ PostTit, PostDes, PostAut, PostAutNom, PostLink, PostCats, PostImg, }) => {
     const existingPost = await post_model_1.default.findOne({ PostTit });
     if (existingPost)
         throw new Error("Post already exists");
@@ -16,6 +16,7 @@ const createPost = async ({ PostTit, PostDes, PostAut, PostAutNom, PostLink, Pos
         PostAutNom,
         PostLink,
         PostCats,
+        PostImg,
     });
     return await post.save();
 };

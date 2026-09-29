@@ -1,9 +1,12 @@
 .conteinner__posts-new {
-  margin-top: 120px;
-  height: 100vh;
+  min-height: calc(100vh - 85px - 80px);
+  padding: 80px 20px;
+
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
 }
 
 .form {

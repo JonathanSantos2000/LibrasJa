@@ -4,6 +4,9 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { DatePipe } from '@angular/common';
 import { PostsService } from '../../../../services/post.service';
 import { Post } from '../../../../shared/models/post.models';
+import { UPLOAD_IMAGE_URL } from '../../../../shared/constants/urls';
+import { User } from '../../../../shared/models/user.models';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-post',
@@ -12,11 +15,16 @@ import { Post } from '../../../../shared/models/post.models';
   styleUrl: './post.component.css',
 })
 export class PostComponent implements OnInit {
+  UPLOAD_IMAGE_URL = UPLOAD_IMAGE_URL + 'users/';
+
   post!: Post;
+  user: User | null = null;
+  isAuth = false;
 
   youtubeUrl!: SafeResourceUrl;
 
   constructor(
+    private userService: UserService,
     private postService: PostsService,
     private activatedRoute: ActivatedRoute,
     private sanitizer: DomSanitizer,
@@ -24,6 +32,11 @@ export class PostComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.userService.user$.subscribe((user) => {
+      this.user = user;
+      this.isAuth = !!user;
+    });
+
     this.activatedRoute.paramMap.subscribe((params) => {
       const id = params.get('id');
 

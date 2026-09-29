@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUserRole = exports.countUsers = exports.getUsersPaginated = exports.loginUser = exports.createUser = void 0;
+exports.addQtdPost = exports.updateUserRole = exports.countUsers = exports.getUsersPaginated = exports.loginUser = exports.createUser = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const user_utils_1 = require("../utils/user.utils");
 const user_model_1 = __importDefault(require("../models/user.model"));
@@ -75,3 +75,17 @@ const updateUserRole = async (userId, UsuNivAce) => {
     return user;
 };
 exports.updateUserRole = updateUserRole;
+const addQtdPost = async (userId) => {
+    const user = await user_model_1.default.findByIdAndUpdate(userId, {
+        $inc: {
+            UsuQtdPost: 1,
+        },
+    }, {
+        returnDocument: "after",
+    }).select("-UsuSen");
+    if (!user) {
+        throw new Error("Usuário não encontrado");
+    }
+    return user;
+};
+exports.addQtdPost = addQtdPost;

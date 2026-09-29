@@ -26,15 +26,10 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
     const categorias = JSON.parse(PostCats);
 
-    console.log("CATEGORIAS RECEBIDAS:", PostCats);
-    console.log("CATEGORIAS PARSED:", categorias);
-
     for (const categoria of categorias) {
-      console.log("INCREMENTANDO CATEGORIA:", categoria.PostCatId);
-
       await categoriasService.addQtdPost(categoria.PostCatId);
     }
-    
+
     res.status(201).json(post);
   } catch (error: any) {
     res.status(400).json({

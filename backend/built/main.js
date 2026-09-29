@@ -29,9 +29,6 @@ app.use("/api/posts", post_router_1.default);
 // UPLOADS
 // =========================
 app.use("/uploads", express_1.default.static(path_1.default.join(process.cwd(), "uploads")));
-// =========================
-// ANGULAR
-// =========================
 const frontendPath = path_1.default.join(process.cwd(), "built", "public", "browser");
 app.use(express_1.default.static(frontendPath));
 app.get("/{*splat}", (req, res) => {

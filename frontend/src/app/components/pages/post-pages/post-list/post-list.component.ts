@@ -3,6 +3,7 @@ import { Post } from '../../../../shared/models/post.models';
 import { PostsService } from '../../../../services/post.service';
 import { UserService } from '../../../../services/user.service';
 import { RouterLink } from '@angular/router';
+import { UPLOAD_IMAGE_URL } from '../../../../shared/constants/urls';
 
 @Component({
   imports: [RouterLink],
@@ -11,6 +12,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './post-list.component.html',
 })
 export class PostListComponent implements OnInit {
+  UPLOAD_IMAGE_URL = UPLOAD_IMAGE_URL + 'post/';
   page = 1;
   totalPages = 1;
   posts: Post[] = [];
