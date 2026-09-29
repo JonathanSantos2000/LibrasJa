@@ -34,3 +34,27 @@ export const getCategoriasPaginated = async ({
 export const countCategorias = async () => {
   return Categoria.countDocuments();
 };
+
+export const addQtdPost = async (categoriaId: string): Promise<ICategoria> => {
+  console.log("ID RECEBIDO:", categoriaId);
+
+  const categoriaAntes = await Categoria.findById(categoriaId);
+
+  const categoria = await Categoria.findByIdAndUpdate(
+    categoriaId,
+    {
+      $inc: {
+        CatQtdCon: 1,
+      },
+    },
+    {
+      new: true,
+    },
+  );
+
+  if (!categoria) {
+    throw new Error("Categoria não encontrada");
+  }
+
+  return categoria;
+};

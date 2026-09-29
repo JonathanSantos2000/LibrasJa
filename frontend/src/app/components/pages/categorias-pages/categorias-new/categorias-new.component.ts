@@ -61,7 +61,6 @@ export class CategoriasNewComponent implements OnInit {
     if (this.selectedFile) {
       formData.append('CatImg', this.selectedFile);
     }
-    console.log(formData);
 
     this.categoriasService.CreateCategorias(formData).subscribe(() => {
       this.isSubmitted = false;

@@ -4,6 +4,29 @@
       <div class="title_logo">
         <h3>Nova Postagem.</h3>
       </div>
+      <!-- Imagem Categorias -->
+      <div class="gift-image-container">
+        <label class="gift-image-upload">
+          <input
+            type="file"
+            accept="image/*"
+            (change)="onFileSelected($event)"
+            hidden
+          />
+
+          <!--  -->
+          @if (imagePreview) {
+            <img [src]="imagePreview" alt="Produto" class="post-preview" />
+          }
+          <!--  -->
+          @if (!imagePreview) {
+            <div class="upload-placeholder">
+              <span class="upload-icon">📷</span>
+              <span>Adicionar icone para a categoria</span>
+            </div>
+          }
+        </label>
+      </div>
       <!-- Titulo -->
       <text-input
         [control]="fc['PostTit']"

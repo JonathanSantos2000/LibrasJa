@@ -5,3 +5,4 @@ export const uploadCategoriasImage =
 
 export const uploadUserAvatar = createUpload("users").single("UsuImgPer");
 
+export const uploadPostImage = createUpload("post").single("PostImg");

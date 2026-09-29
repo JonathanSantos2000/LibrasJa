@@ -9,6 +9,7 @@ export const createPost = async ({
   PostAutNom,
   PostLink,
   PostCats,
+  PostImg,
 }: IPostInput): Promise<IPost> => {
   const existingPost = await Post.findOne({ PostTit });
 
@@ -21,6 +22,7 @@ export const createPost = async ({
     PostAutNom,
     PostLink,
     PostCats,
+    PostImg,
   });
   return await post.save();
 };

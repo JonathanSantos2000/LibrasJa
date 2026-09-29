@@ -1,9 +1,10 @@
 import { Document, model, Schema, Types } from "mongoose";
 
 interface ICategorias {
-  FurComId: Types.ObjectId;
+  PostCatId: Types.ObjectId;
   PostCatNom: string;
 }
+
 export interface IPost extends Document {
   PostTit: string;
   PostDes: string;
@@ -11,6 +12,8 @@ export interface IPost extends Document {
   PostAutNom: string;
   PostLink: string;
   PostCats: ICategorias[];
+  PostDatCad: Date;
+  PostImg: string;
 }
 
 const PostSchema = new Schema<IPost>(
@@ -47,6 +50,11 @@ const PostSchema = new Schema<IPost>(
         },
       },
     ],
+    PostImg: {
+      type: String,
+      default: "",
+    },
+    PostDatCad: { type: Date, default: Date.now },
   },
   {
     timestamps: true,

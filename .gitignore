@@ -10,11 +10,11 @@ frontend/node_modules/
 # Uploads
 backend/uploads/users/*
 backend/uploads/categorias/*
-backend/uploads/posts/*
+backend/uploads/post/*
 
 backend/src/uploads/users/*
 backend/src/uploads/categorias/*
-backend/src/uploads/posts/*
+backend/src/uploads/post/*
 
 # Ideias
 Ideias/

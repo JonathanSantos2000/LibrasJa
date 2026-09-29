@@ -1,11 +1,11 @@
-<div class="furniture__container">
-  <div class="us_title">
+<div class="post__container">
+  <div class="post_title">
     <h1>Lista de Posts</h1>
   </div>
   <div class="conteiner__cards">
     @for (item of posts; track $index) {
       <a [routerLink]="['/posts/', item._id]">
-        <div class="gift-card">
+        <div class="post-card">
           <div class="image-container">
             <img
               [src]="'assets/images/Foto-NI.jpg'"

@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 
 interface ICategorias {
-  FurComId: Types.ObjectId;
+  PostCatId: Types.ObjectId;
   PostCatNom: string;
 }
 export interface IPostInput {
@@ -11,4 +11,5 @@ export interface IPostInput {
   PostAutNom: string;
   PostLink: string;
   PostCats: ICategorias[];
+  PostImg: string;
 }

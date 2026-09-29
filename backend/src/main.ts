@@ -38,10 +38,6 @@ app.use("/api/posts", postsRoutes);
 
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
-// =========================
-// ANGULAR
-// =========================
-
 const frontendPath = path.join(process.cwd(), "built", "public", "browser");
 
 app.use(express.static(frontendPath));

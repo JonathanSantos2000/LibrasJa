@@ -6,6 +6,8 @@ export class Post {
   PostAutNom!: string;
   PostLink!: string;
   PostCats!: ICategorias[];
+  PostDatCad!: Date;
+  PostImg!: string;
 }
 
 interface ICategorias {

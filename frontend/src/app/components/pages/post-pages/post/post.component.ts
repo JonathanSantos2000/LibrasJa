@@ -1,13 +1,13 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-
+import { DatePipe } from '@angular/common';
 import { PostsService } from '../../../../services/post.service';
 import { Post } from '../../../../shared/models/post.models';
 
 @Component({
   selector: 'app-post',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './post.component.html',
   styleUrl: './post.component.css',
 })

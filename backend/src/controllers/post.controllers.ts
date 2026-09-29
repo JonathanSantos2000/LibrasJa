@@ -1,12 +1,45 @@
 import type { Request, Response } from "express";
 import * as postService from "../services/post.services";
+import * as userService from "../services/user.services";
+import * as categoriasService from "../services/categorias.services";
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
-    const post = await postService.createPost(req.body);
+    const { PostTit, PostDes, PostAut, PostAutNom, PostLink, PostCats } =
+      req.body;
+
+    const file = req.file;
+
+    const PostImg = file ? file.filename : "";
+
+    const post = await postService.createPost({
+      PostTit,
+      PostDes,
+      PostAut,
+      PostAutNom,
+      PostLink,
+      PostCats: JSON.parse(PostCats),
+      PostImg,
+    });
+
+    await userService.addQtdPost(PostAut);
+
+    const categorias = JSON.parse(PostCats);
+
+    console.log("CATEGORIAS RECEBIDAS:", PostCats);
+    console.log("CATEGORIAS PARSED:", categorias);
+
+    for (const categoria of categorias) {
+      console.log("INCREMENTANDO CATEGORIA:", categoria.PostCatId);
+
+      await categoriasService.addQtdPost(categoria.PostCatId);
+    }
+    
     res.status(201).json(post);
   } catch (error: any) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({
+      error: error.message,
+    });
   }
 };
 

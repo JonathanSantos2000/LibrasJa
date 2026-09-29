@@ -41,7 +41,7 @@ export class PostNewComponent implements OnInit {
 
   ngOnInit(): void {
     this.postsForm = this.formBuilder.group({
-      PostTit: ['', [Validators.required, Validators.minLength(5)]],
+      PostTit: ['', [Validators.required, Validators.minLength(4)]],
       PostDes: ['', [Validators.required, Validators.minLength(10)]],
       PostLink: ['', [Validators.required, Validators.minLength(10)]],
       PostCatsSearch: [''],
@@ -74,36 +74,40 @@ export class PostNewComponent implements OnInit {
       return;
     }
 
-    const post = {
-      PostTit: this.fc['PostTit'].value,
-      PostDes: this.fc['PostDes'].value,
-      PostLink: this.fc['PostLink'].value,
+    const formData = new FormData();
 
-      PostCats: this.fc['PostCats'].value.map((categoria: Categorias) => ({
-        PostCatId: categoria._id,
-        PostCatNom: categoria.CatNom,
-      })),
+    formData.append('PostTit', this.fc['PostTit'].value);
+    formData.append('PostDes', this.fc['PostDes'].value);
+    formData.append('PostLink', this.fc['PostLink'].value);
+    formData.append('PostAut', this.user._id);
+    formData.append('PostAutNom', this.user.UsuNom);
 
-      PostAut: this.user._id,
-      PostAutNom: this.user.UsuNom,
-    };
+    formData.append(
+      'PostCats',
+      JSON.stringify(
+        this.fc['PostCats'].value.map((categoria: Categorias) => ({
+          PostCatId: categoria._id,
+          PostCatNom: categoria.CatNom,
+        })),
+      ),
+    );
 
-    console.log('POST ENVIADO:', post);
+    if (this.selectedFile) {
+      formData.append('PostImg', this.selectedFile);
+    }
 
-    this.postsService.CreatePost(post).subscribe({
+    this.postsService.CreatePost(formData).subscribe({
       next: () => {
         this.isSubmitted = false;
         this.postsForm.reset();
         this.categoriasForm.reset();
         this.selectedCategoria = {} as Categorias;
-      },
-      error: (error) => {
-        console.error('ERRO AO CRIAR POST:', error);
-        console.error('STATUS:', error.status);
-        console.error('RESPOSTA DO BACKEND:', error.error);
+        this.imagePreview = null;
+        this.selectedFile = {} as File;
       },
     });
   }
+
   // ---- categorias search ----
   categorias: Categorias[] = [];
   categoriaName: string = '';
@@ -177,5 +181,29 @@ export class PostNewComponent implements OnInit {
       (categoria) =>
         !selecionadas.some((selecionada) => selecionada._id === categoria._id),
     );
+  }
+
+  selectedFile!: File;
+
+  imagePreview: string | null = null;
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+
+      this.selectedFile = file; // 🔥 ESSENCIAL
+
+      // preview continua ok
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.imagePreview = reader.result as string;
+        this.cdr.detectChanges();
+      };
+
+      reader.readAsDataURL(file);
+    }
   }
 }

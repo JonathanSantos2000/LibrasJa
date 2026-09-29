@@ -104,3 +104,23 @@ export const updateUserRole = async (
 
   return user;
 };
+
+export const addQtdPost = async (userId: string): Promise<IUser> => {
+  const user = await User.findByIdAndUpdate(
+    userId,
+    {
+      $inc: {
+        UsuQtdPost: 1,
+      },
+    },
+    {
+      returnDocument: "after",
+    },
+  ).select("-UsuSen");
+
+  if (!user) {
+    throw new Error("Usuário não encontrado");
+  }
+
+  return user;
+};

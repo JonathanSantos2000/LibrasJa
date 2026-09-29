@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Service } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ToastService } from './toast.service';
 import { Observable, tap } from 'rxjs';
 import { Post } from '../shared/models/post.models';
@@ -11,13 +11,15 @@ import {
   POST_REGISTER_URL,
 } from '../shared/constants/urls';
 
-@Service()
+@Injectable({
+  providedIn: 'root',
+})
 export class PostsService {
   private readonly http = inject(HttpClient);
   private readonly toastr = inject(ToastService);
 
-  CreatePost(post: Partial<Post>): Observable<Post> {
-    return this.http.post<Post>(POST_REGISTER_URL, post).pipe(
+  CreatePost(formData: FormData): Observable<Post> {
+    return this.http.post<Post>(POST_REGISTER_URL, formData).pipe(
       tap({
         next: (post) => {
           this.toastr.success(`Post: ${post.PostTit} registrado com sucesso`);

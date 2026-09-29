@@ -1,4 +1,4 @@
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 
 const BASE_URL = environment.production ? '' : 'http://localhost:5000';
 
