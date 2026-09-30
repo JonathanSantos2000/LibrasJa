@@ -1,8 +1,7 @@
 import { createUpload } from "../configs/multer.config";
 
-export const uploadCategoriasImage =
-  createUpload("categorias").single("CatImg");
+export const uploadCategoriasImage = createUpload().single("CatImg");
 
-export const uploadUserAvatar = createUpload("users").single("UsuImgPer");
+export const uploadUserAvatar = createUpload().single("UsuImgPer");
 
-export const uploadPostImage = createUpload("post").single("PostImg");
+export const uploadPostImage = createUpload().single("PostImg");

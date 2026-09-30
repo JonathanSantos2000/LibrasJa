@@ -1,14 +1,22 @@
 import { Request, Response } from "express";
+import { uploadImage } from "../services/cloudinary.services";
 import * as userService from "../services/user.services";
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
     const file = req.file;
+    let UsuImgPer = "";
+
+    if (file) {
+      const result = await uploadImage(file.buffer, "librasja/users");
+      UsuImgPer = result.secure_url;
+    }
+
     const payload = {
       UsuNom: req.body.UsuNom,
       UsuEmail: req.body.UsuEmail,
       UsuSen: req.body.UsuSen,
-      UsuImgPer: file?.filename || "",
+      UsuImgPer: UsuImgPer,
     };
     const user = await userService.createUser(payload);
     res.status(201).json(user);

@@ -1,12 +1,20 @@
 import type { Request, Response } from "express";
 import * as categoriasService from "../services/categorias.services";
+import { uploadImage } from "../services/cloudinary.services";
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
     const file = req.file;
+    let CatImg = "";
+
+    if (file) {
+      const result = await uploadImage(file.buffer, "librasja/categorias");
+      CatImg = result.secure_url;
+    }
+
     const payload = {
       CatNom: req.body.CatNom,
-      CatImg: file?.filename || "",
+      CatImg: CatImg,
       CatDatCad: new Date(),
     };
     const categoria = await categoriasService.createCategoria(payload);

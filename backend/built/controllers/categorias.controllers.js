@@ -35,12 +35,18 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCategoriasPaginated = exports.getAllCategorias = exports.register = void 0;
 const categoriasService = __importStar(require("../services/categorias.services"));
+const cloudinary_services_1 = require("../services/cloudinary.services");
 const register = async (req, res) => {
     try {
         const file = req.file;
+        let CatImg = "";
+        if (file) {
+            const result = await (0, cloudinary_services_1.uploadImage)(file.buffer, "librasja/categorias");
+            CatImg = result.secure_url;
+        }
         const payload = {
             CatNom: req.body.CatNom,
-            CatImg: file?.filename || "",
+            CatImg: CatImg,
             CatDatCad: new Date(),
         };
         const categoria = await categoriasService.createCategoria(payload);

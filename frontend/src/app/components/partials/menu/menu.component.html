@@ -23,7 +23,7 @@
           <div class="user">
             @if (isAuth && user) {
               <img
-                [src]="'http://localhost:5000/uploads/users/' + user.UsuImgPer"
+                [src]="user.UsuImgPer"
                 [alt]="user.UsuNom"
                 loading="lazy"
               />

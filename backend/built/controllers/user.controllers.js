@@ -34,15 +34,21 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateUser = exports.getUsersPaginated = exports.login = exports.register = void 0;
+const cloudinary_services_1 = require("../services/cloudinary.services");
 const userService = __importStar(require("../services/user.services"));
 const register = async (req, res) => {
     try {
         const file = req.file;
+        let UsuImgPer = "";
+        if (file) {
+            const result = await (0, cloudinary_services_1.uploadImage)(file.buffer, "librasja/users");
+            UsuImgPer = result.secure_url;
+        }
         const payload = {
             UsuNom: req.body.UsuNom,
             UsuEmail: req.body.UsuEmail,
             UsuSen: req.body.UsuSen,
-            UsuImgPer: file?.filename || "",
+            UsuImgPer: UsuImgPer,
         };
         const user = await userService.createUser(payload);
         res.status(201).json(user);

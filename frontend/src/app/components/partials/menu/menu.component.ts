@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { User } from '../../../shared/models/user.models';
 import { UserService } from '../../../services/user.service';
+import { UPLOAD_IMAGE_URL } from '../../../shared/constants/urls';
 
 type MenuLevel = 'off' | 'menu';
 

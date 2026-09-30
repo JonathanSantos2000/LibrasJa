@@ -23,7 +23,7 @@ const CategoriaSchema = new Schema<ICategoria>(
     },
     CatQtdCon: {
       type: Number,
-      required: true,
+      default: 0,
     },
   },
   {

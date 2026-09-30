@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -30,6 +30,7 @@ export class RegisterPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
+    private cdr: ChangeDetectorRef,
     private router: Router,
   ) {}
 
@@ -91,6 +92,7 @@ export class RegisterPageComponent implements OnInit {
 
       reader.onload = () => {
         this.imagePreview = reader.result as string;
+        this.cdr.detectChanges();
       };
 
       reader.readAsDataURL(file);

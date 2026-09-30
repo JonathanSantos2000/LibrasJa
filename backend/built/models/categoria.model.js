@@ -16,7 +16,7 @@ const CategoriaSchema = new mongoose_1.Schema({
     },
     CatQtdCon: {
         type: Number,
-        required: true,
+        default: 0,
     },
 }, {
     timestamps: true,

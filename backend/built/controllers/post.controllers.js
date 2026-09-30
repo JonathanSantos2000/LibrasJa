@@ -37,11 +37,16 @@ exports.getPostId = exports.getPostsPaginated = exports.register = void 0;
 const postService = __importStar(require("../services/post.services"));
 const userService = __importStar(require("../services/user.services"));
 const categoriasService = __importStar(require("../services/categorias.services"));
+const cloudinary_services_1 = require("../services/cloudinary.services");
 const register = async (req, res) => {
     try {
         const { PostTit, PostDes, PostAut, PostAutNom, PostLink, PostCats } = req.body;
         const file = req.file;
-        const PostImg = file ? file.filename : "";
+        let PostImg = "";
+        if (file) {
+            const result = await (0, cloudinary_services_1.uploadImage)(file.buffer, "librasja/post");
+            PostImg = result.secure_url;
+        }
         const post = await postService.createPost({
             PostTit,
             PostDes,

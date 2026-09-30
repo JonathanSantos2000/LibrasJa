@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import * as postService from "../services/post.services";
 import * as userService from "../services/user.services";
 import * as categoriasService from "../services/categorias.services";
+import { uploadImage } from "../services/cloudinary.services";
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -9,8 +10,12 @@ export const register = async (req: Request, res: Response): Promise<void> => {
       req.body;
 
     const file = req.file;
+    let PostImg = "";
 
-    const PostImg = file ? file.filename : "";
+    if (file) {
+      const result = await uploadImage(file.buffer, "librasja/post");
+      PostImg = result.secure_url;
+    }
 
     const post = await postService.createPost({
       PostTit,
