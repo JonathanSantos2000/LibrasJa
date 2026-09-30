@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://librasja.onrender.com/',
+  apiUrl: 'https://librasja.onrender.com',
 };
