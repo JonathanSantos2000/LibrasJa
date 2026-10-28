@@ -447,3 +447,93 @@
 
   border-radius: 10px;
 }
+
+/* ========================================
+   BUSCA DE POSTS
+======================================== */
+
+.menu-search {
+  margin-bottom: 20px;
+  padding: 0 4px;
+}
+
+.menu-search label {
+  display: block;
+  margin-bottom: 8px;
+
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.search-input-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 5px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+
+  background: #fff;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.search-input-group:focus-within {
+  border-color: #2a6db0;
+  box-shadow: 0 0 0 3px rgba(42, 109, 176, 0.12);
+}
+
+.search-input-group input {
+  width: 100%;
+  min-width: 0;
+
+  padding: 9px 8px;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #334155;
+  font: inherit;
+  font-size: 14px;
+}
+
+.search-input-group input::placeholder {
+  color: #94a3b8;
+}
+
+.search-input-group button {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 7px;
+
+  background: #2a6db0;
+  color: #fff;
+
+  font-size: 16px;
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.search-input-group button:hover:not(:disabled) {
+  background: #1e568e;
+}
+
+.search-input-group button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}

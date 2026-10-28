@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ToastService } from './toast.service';
 import { Observable, tap } from 'rxjs';
@@ -34,10 +34,31 @@ export class PostsService {
     );
   }
 
-  GetPostsPaginated(page: number = 1): Observable<PostPagination> {
-    return this.http.get<PostPagination>(
-      `${GET_ALL_POSTS_PAGINATED_URL}?page=${page}&limit=10`,
-    );
+  GetPostsPaginated(
+    page: number = 1,
+    filters: {
+      q?: string;
+      autor?: string;
+      categoria?: string;
+    } = {},
+  ): Observable<PostPagination> {
+    let params = new HttpParams().set('page', page).set('limit', 10);
+
+    if (filters.q) {
+      params = params.set('q', filters.q);
+    }
+
+    if (filters.autor) {
+      params = params.set('autor', filters.autor);
+    }
+
+    if (filters.categoria) {
+      params = params.set('categoria', filters.categoria);
+    }
+
+    return this.http.get<PostPagination>(GET_ALL_POSTS_PAGINATED_URL, {
+      params,
+    });
   }
 
   GetPostId(id: string): Observable<Post> {

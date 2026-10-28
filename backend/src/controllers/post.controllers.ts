@@ -48,16 +48,28 @@ export const getPostsPaginated = async (
   res: Response,
 ): Promise<void> => {
   try {
-    const page = Number(req.query.page) || 1;
-    const limit = Number(req.query.limit) || 10;
+    const page = Math.max(1, Number(req.query.page) || 1);
+    const limit = Math.max(1, Number(req.query.limit) || 10);
+
+    const filters = {
+      q: typeof req.query.q === "string" ? req.query.q.trim() : "",
+      autor: typeof req.query.autor === "string" ? req.query.autor.trim() : "",
+      categoria:
+        typeof req.query.categoria === "string"
+          ? req.query.categoria.trim()
+          : "",
+    };
 
     const skip = (page - 1) * limit;
-    const posts = await postService.getPostsPaginated({
-      skip,
-      limit,
-    });
 
-    const total = await postService.countPosts();
+    const [posts, total] = await Promise.all([
+      postService.getPostsPaginated({
+        skip,
+        limit,
+        filters,
+      }),
+      postService.countPosts(filters),
+    ]);
 
     res.status(200).json({
       posts,

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 import { User } from '../../../shared/models/user.models';
 import { UserService } from '../../../services/user.service';
 import { UPLOAD_IMAGE_URL } from '../../../shared/constants/urls';
+import { FormsModule } from '@angular/forms';
 
 type MenuLevel = 'off' | 'menu';
 
@@ -13,7 +14,7 @@ type MenuCenter = 'normal' | 'admin' | 'posts' | 'categorias' | 'config';
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css',
 })
@@ -33,8 +34,26 @@ export class MenuComponent implements OnInit {
   // Primeiro nome
   firstName = '';
 
-  constructor(private userService: UserService) {}
+  searchTerm = '';
 
+  constructor(
+    private userService: UserService,
+    private router: Router,
+  ) {}
+
+  searchPosts(): void {
+    const term = this.searchTerm.trim();
+
+    if (!term) {
+      return;
+    }
+
+    this.close_menu();
+
+    this.router.navigate(['/posts/posts-list'], {
+      queryParams: { q: term },
+    });
+  }
   ngOnInit(): void {
     this.userService.user$.subscribe((user) => {
       this.user = user;
@@ -46,54 +65,28 @@ export class MenuComponent implements OnInit {
         this.firstName = '';
       }
 
-      /*
-       * Se o usuário não estiver autenticado,
-       * garante que o menu normal seja exibido.
-       */
       if (!this.isAuth) {
         this.menu_center = 'normal';
       }
     });
   }
 
-  /**
-   * Abre o menu lateral.
-   *
-   * Sempre começa no menu principal.
-   */
   open_menu(): void {
     this.menu_center = this.getInitialMenu();
 
     this.menu_level = 'menu';
   }
 
-  /**
-   * Fecha o menu lateral.
-   */
   close_menu(): void {
     this.menu_level = 'off';
 
-    /*
-     * Reseta o submenu.
-     * Assim, quando abrir novamente,
-     * não ficará preso no último submenu.
-     */
     this.menu_center = this.getInitialMenu();
   }
 
-  /**
-   * Volta para o menu principal.
-   *
-   * Não fecha o menu lateral.
-   */
   back_menu(): void {
     this.menu_center = this.getInitialMenu();
   }
 
-  /**
-   * Define o menu inicial de acordo
-   * com o nível de acesso do usuário.
-   */
   private getInitialMenu(): 'normal' | 'admin' {
     if (this.isAuth && this.user && this.user.UsuNivAce > 0) {
       return 'admin';
@@ -102,30 +95,18 @@ export class MenuComponent implements OnInit {
     return 'normal';
   }
 
-  /**
-   * Abre o menu de Posts.
-   */
   menuPosts(): void {
     this.menu_center = 'posts';
   }
 
-  /**
-   * Abre o menu de categorias.
-   */
   menuCategorias(): void {
     this.menu_center = 'categorias';
   }
 
-  /**
-   * Abre o menu de configurações.
-   */
   menuConfigUser(): void {
     this.menu_center = 'config';
   }
 
-  /**
-   * Realiza logout.
-   */
   logout(): void {
     this.userService.logout();
 

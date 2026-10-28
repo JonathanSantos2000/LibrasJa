@@ -22,11 +22,7 @@
         <div class="top-menu">
           <div class="user">
             @if (isAuth && user) {
-              <img
-                [src]="user.UsuImgPer"
-                [alt]="user.UsuNom"
-                loading="lazy"
-              />
+              <img [src]="user.UsuImgPer" [alt]="user.UsuNom" loading="lazy" />
 
               <h3>
                 {{ firstName }}
@@ -66,6 +62,30 @@
           }
         </div>
         <nav class="center-menu" aria-label="Navegação principal">
+          @if (menu_center === "normal" || menu_center === "admin") {
+            <form class="menu-search" (ngSubmit)="searchPosts()">
+              <label for="search-posts">Buscar posts</label>
+
+              <div class="search-input-group">
+                <input
+                  id="search-posts"
+                  type="search"
+                  name="searchTerm"
+                  [(ngModel)]="searchTerm"
+                  placeholder="Digite um termo..."
+                  autocomplete="off"
+                />
+
+                <button
+                  type="submit"
+                  aria-label="Buscar posts"
+                  [disabled]="!searchTerm.trim()"
+                >
+                  <i class="bi bi-search"></i>
+                </button>
+              </div>
+            </form>
+          }
           <ul>
             @switch (menu_center) {
               @case ("normal") {
@@ -124,10 +144,7 @@
 
               @case ("posts") {
                 <li>
-                  <a
-                    [routerLink]="['/posts/posts-new']"
-                    (click)="close_menu()"
-                  >
+                  <a [routerLink]="['/posts/posts-new']" (click)="close_menu()">
                     <i class="bi bi-plus-circle"></i>
 
                     <span> Adicionar Post </span>
