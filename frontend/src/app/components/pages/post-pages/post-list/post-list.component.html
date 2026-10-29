@@ -23,24 +23,37 @@
 
         <div class="filter-field">
           <label for="authorFilter">Autor</label>
-          <input
+          <select
             id="authorFilter"
-            type="text"
             name="authorFilter"
             [(ngModel)]="authorFilter"
-            placeholder="Nome do autor..."
-          />
+          >
+            <option value="">Todos os autores</option>
+
+            @for (usuario of usuarios; track usuario.UsuNom) {
+              <option [value]="usuario.UsuNom">
+                {{ usuario.UsuNom }}
+              </option>
+            }
+          </select>
         </div>
 
+        <!-- FILTRO POR CATEGORIA -->
         <div class="filter-field">
           <label for="categoryFilter">Categoria</label>
-          <input
+          <select
             id="categoryFilter"
-            type="text"
             name="categoryFilter"
             [(ngModel)]="categoryFilter"
-            placeholder="Nome da categoria..."
-          />
+          >
+            <option value="">Todas as categorias</option>
+
+            @for (categoria of categorias; track categoria.CatNom) {
+              <option [value]="categoria.CatNom">
+                {{ categoria.CatNom }}
+              </option>
+            }
+          </select>
         </div>
 
         <div class="filter-actions">

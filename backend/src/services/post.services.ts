@@ -1,7 +1,4 @@
-import {
-  IPaginacaoInput,
-  IPaginacaoInputFilters,
-} from "../interfaces/IPaginacaoInput";
+import { IPaginacaoInputFilters } from "../interfaces/IPaginacaoInput";
 import { PostFilters } from "../interfaces/IPostFilters";
 import { IPostInput } from "../interfaces/IPostInput";
 import Post, { IPost } from "../models/post.model";
@@ -9,25 +6,32 @@ import Post, { IPost } from "../models/post.model";
 const escapeRegex = (value: string): string =>
   value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
+const normalizeText = (value: string): string =>
+  value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+
 const buildPostFilter = (filters: PostFilters = {}) => {
   const query: Record<string, any> = {};
 
-  // Pesquisa pelo título ou descrição
-  if (filters.q) {
-    const search = new RegExp(escapeRegex(filters.q), "i");
+  // Pesquisa pelo título, ignorando acentuação
+  if (filters.q?.trim()) {
+    const search = new RegExp(escapeRegex(normalizeText(filters.q)), "i");
 
-    query.$or = [{ PostTit: search }, { PostDes: search }];
+    query.PostTitNorm = search;
   }
 
   // Pesquisa pelo nome do autor
-  if (filters.autor) {
-    query.PostAutNom = new RegExp(escapeRegex(filters.autor), "i");
+  if (filters.autor?.trim()) {
+    query.PostAutNom = new RegExp(escapeRegex(filters.autor.trim()), "i");
   }
 
-  // Pesquisa em qualquer categoria associada ao post
-  if (filters.categoria) {
+  // Pesquisa pela categoria
+  if (filters.categoria?.trim()) {
     query["PostCats.PostCatNom"] = new RegExp(
-      escapeRegex(filters.categoria),
+      escapeRegex(filters.categoria.trim()),
       "i",
     );
   }
@@ -46,10 +50,13 @@ export const createPost = async ({
 }: IPostInput): Promise<IPost> => {
   const existingPost = await Post.findOne({ PostTit });
 
-  if (existingPost) throw new Error("Post already exists");
+  if (existingPost) {
+    throw new Error("Post already exists");
+  }
 
   const post = new Post({
     PostTit,
+    PostTitNorm: normalizeText(PostTit),
     PostDes,
     PostAut,
     PostAutNom,
@@ -57,6 +64,7 @@ export const createPost = async ({
     PostCats,
     PostImg,
   });
+
   return await post.save();
 };
 
@@ -80,6 +88,5 @@ export const countPosts = async (
 };
 
 export const getPostId = async (id: string): Promise<IPost | null> => {
-  const post = await Post.findById(id);
-  return post;
+  return Post.findById(id);
 };

@@ -14,6 +14,7 @@ export interface IPost extends Document {
   PostCats: ICategorias[];
   PostDatCad: Date;
   PostImg: string;
+  PostTitNorm: string;
 }
 
 const PostSchema = new Schema<IPost>(
@@ -55,6 +56,10 @@ const PostSchema = new Schema<IPost>(
       default: "",
     },
     PostDatCad: { type: Date, default: Date.now },
+    PostTitNorm: {
+      type: String,
+      default: "",
+    },
   },
   {
     timestamps: true,

@@ -5,6 +5,7 @@ import { User } from '../shared/models/user.models';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
 import {
   GET_ALL_USERS_PAGINATED_URL,
+  GET_USERS_BY_ROLES_URL,
   UPDATE_USER_ROLE_URL,
   USER_LOGIN_URL,
   USER_REGISTER_URL,
@@ -71,6 +72,11 @@ export class UserService {
       UsuNivAce,
     });
   }
+
+  getUserByRole(): Observable<User[]> {
+    return this.http.get<User[]>(`${GET_USERS_BY_ROLES_URL}?roles=1&roles=2`);
+  }
+
   // ========================
   // PRIVATE HELPERS
   // ========================

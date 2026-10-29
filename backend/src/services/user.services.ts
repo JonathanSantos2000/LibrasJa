@@ -124,3 +124,13 @@ export const addQtdPost = async (userId: string): Promise<IUser> => {
 
   return user;
 };
+
+export const getUsersByRoles = async (roles: number[]) => {
+  return await User.find({
+    UsuNivAce: { $in: roles },
+    UsuAti: true,
+  })
+    .select("_id UsuNom UsuNivAce")
+    .sort({ UsuNom: 1 })
+    .lean();
+};

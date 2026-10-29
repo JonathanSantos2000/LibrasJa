@@ -87,3 +87,32 @@ export const updateUser = async (
     });
   }
 };
+
+export const getUsersByRoles = async (req: Request, res: Response) => {
+  try {
+    const rolesParam = req.query.roles;
+
+    const roles = (Array.isArray(rolesParam) ? rolesParam : [rolesParam]).map(
+      Number,
+    );
+
+    if (
+      roles.length === 0 ||
+      roles.some((role) => !Number.isInteger(role) || ![0, 1, 2].includes(role))
+    ) {
+      return res.status(400).json({
+        message: "Lista de roles inválida.",
+      });
+    }
+
+    const users = await userService.getUsersByRoles(roles);
+
+    return res.status(200).json(users);
+  } catch (error) {
+    console.error("Erro ao buscar usuários por roles:", error);
+
+    return res.status(500).json({
+      message: "Erro ao buscar usuários.",
+    });
+  }
+};

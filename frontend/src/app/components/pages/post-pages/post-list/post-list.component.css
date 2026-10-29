@@ -201,7 +201,8 @@
   font-weight: 600;
 }
 
-.filter-field input {
+.filter-field input,
+.filter-field select {
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
@@ -214,7 +215,8 @@
   font-size: 14px;
 }
 
-.filter-field input:focus {
+.filter-field input:focus,
+.filter-field select:focus {
   border-color: #4f52d1;
   box-shadow: 0 0 0 3px rgba(79, 82, 209, 0.12);
 }
@@ -295,10 +297,6 @@
 }
 
 @media (max-width: 700px) {
-  .post__container {
-    padding: 40px 16px;
-  }
-
   .post-filters {
     grid-template-columns: 1fr;
     padding: 16px;

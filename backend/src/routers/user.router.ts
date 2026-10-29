@@ -16,4 +16,6 @@ router.post(
   userController.updateUser,
 );
 
+router.get("/users-by-roles", userController.getUsersByRoles);
+
 export default router;

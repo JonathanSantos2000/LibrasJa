@@ -2,10 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { Post } from '../../../../shared/models/post.models';
 import { PostsService } from '../../../../services/post.service';
+import { CategoriasService } from '../../../../services/categorias.service';
+import { Categorias } from '../../../../shared/models/categorias.models';
+import { User } from '../../../../shared/models/user.models';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-posts-list',
@@ -27,7 +31,9 @@ export class PostListComponent implements OnInit, OnDestroy {
   private routeSubscription?: Subscription;
 
   constructor(
+    private userService: UserService,
     private postsService: PostsService,
+    private categoriasService: CategoriasService,
     private route: ActivatedRoute,
     private router: Router,
     private cdr: ChangeDetectorRef,
@@ -41,6 +47,31 @@ export class PostListComponent implements OnInit, OnDestroy {
 
       this.page = 1;
       this.loadPosts();
+
+      this.getAllCategorias();
+      this.getUsersByRole();
+    });
+  }
+  usuarios: User[] = [];
+
+  getUsersByRole() {
+    let userObservalbe: Observable<User[]>;
+    userObservalbe = this.userService.getUserByRole();
+
+    userObservalbe.subscribe((serverUsers) => {
+      this.usuarios = serverUsers;
+      this.cdr.detectChanges();
+    });
+  }
+
+  categorias: Categorias[] = [];
+  getAllCategorias() {
+    let categoriasObservalbe: Observable<Categorias[]>;
+    categoriasObservalbe = this.categoriasService.getAllCategorias();
+
+    categoriasObservalbe.subscribe((serverCategorias) => {
+      this.categorias = serverCategorias;
+      this.cdr.detectChanges();
     });
   }
 
