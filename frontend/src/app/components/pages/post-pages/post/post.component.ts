@@ -15,8 +15,6 @@ import { UserService } from '../../../../services/user.service';
   styleUrl: './post.component.css',
 })
 export class PostComponent implements OnInit {
-  UPLOAD_IMAGE_URL = UPLOAD_IMAGE_URL + 'users/';
-
   post!: Post;
   user: User | null = null;
   isAuth = false;
@@ -32,11 +30,6 @@ export class PostComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userService.user$.subscribe((user) => {
-      this.user = user;
-      this.isAuth = !!user;
-    });
-
     this.activatedRoute.paramMap.subscribe((params) => {
       const id = params.get('id');
 
@@ -49,6 +42,7 @@ export class PostComponent implements OnInit {
           this.post = post;
 
           this.youtubeUrl = this.createYoutubeUrl(post.PostLink);
+          this.buscarUsuariofoto(post.PostAut);
           this.cdr.detectChanges();
         },
 
@@ -59,6 +53,19 @@ export class PostComponent implements OnInit {
     });
   }
 
+  photoUrl: string = '';
+
+  buscarUsuariofoto(userId: string): void {
+    this.userService.getUserPhoto(userId).subscribe({
+      next: (url) => {
+        this.photoUrl = url.trim();
+        this.cdr.detectChanges();
+      },
+      error: (error) => {
+        console.error('Erro ao buscar foto:', error);
+      },
+    });
+  }
   private createYoutubeUrl(url: string): SafeResourceUrl {
     const videoUrl = new URL(url);
 

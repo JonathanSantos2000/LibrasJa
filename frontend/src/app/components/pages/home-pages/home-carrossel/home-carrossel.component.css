@@ -1,0 +1,110 @@
+.carrossel-carousel {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) 38px;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.carrossel-track {
+  display: flex;
+  min-width: 0;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 8px 2px 16px;
+}
+
+.carrossel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carrossel-card {
+  position: relative;
+  display: flex;
+  flex: 0 0 180px;
+  min-height: 160px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+  padding: 17px;
+  overflow: hidden;
+  border: 1px solid #eae8f2;
+  border-radius: 17px;
+  background: white;
+  scroll-snap-align: start;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease;
+}
+
+.carrossel-card:hover {
+  transform: translateY(-3px);
+  border-color: #c8baff;
+}
+
+.carrossel-icon {
+  display: block;
+  width: 100%;
+  height: 85px;
+  overflow: hidden;
+  border-radius: 13px;
+  background: #f0ebff;
+}
+
+.carrossel-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 13px;
+}
+
+.carrossel-card:nth-child(4n + 2) .carrossel-icon {
+  background: #e2f8f2;
+}
+
+.carrossel-card:nth-child(4n + 3) .carrossel-icon {
+  background: #fff1df;
+}
+
+.carrossel-card:nth-child(4n + 4) .carrossel-icon {
+  background: #e6f2ff;
+}
+
+.carrossel-name {
+  width: 100%;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  font-weight: 750;
+  text-align: center;
+}
+
+.carrossel-arrow {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: #a7a2bb;
+  font-size: 17px;
+}
+
+.carousel-button {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid #eae8f2;
+  border-radius: 50%;
+  background: white;
+  color: #7052dc;
+  cursor: pointer;
+  font-size: 25px;
+  z-index: 2;
+}
+
+.carousel-button:hover {
+  background: #f0ebff;
+}

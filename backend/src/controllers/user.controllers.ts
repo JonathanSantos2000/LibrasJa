@@ -116,3 +116,28 @@ export const getUsersByRoles = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const getUserPhoto = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
+  try {
+    const id = req.params.id;
+
+    if (typeof id !== "string") {
+      res.status(400).json({ error: "ID do usuário inválido" });
+      return;
+    }
+
+    const photoUrl = await userService.getUserPhoto(id);
+
+    if (!photoUrl) {
+      res.status(404).send("Foto não encontrada");
+      return;
+    }
+
+    res.status(200).send(photoUrl);
+  } catch (error: any) {
+    res.status(400).json({ error: error.message });
+  }
+};

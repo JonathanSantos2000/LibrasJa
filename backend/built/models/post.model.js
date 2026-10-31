@@ -39,6 +39,10 @@ const PostSchema = new mongoose_1.Schema({
         default: "",
     },
     PostDatCad: { type: Date, default: Date.now },
+    PostTitNorm: {
+        type: String,
+        default: "",
+    },
 }, {
     timestamps: true,
 });

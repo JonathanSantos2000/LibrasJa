@@ -1,0 +1,23 @@
+<section class="search-section">
+  <div class="section-heading">
+    <div>
+      <span class="section-kicker">EXPLORE</span>
+      <h2>O que você quer aprender?</h2>
+    </div>
+    <p>Encontre conteúdos para o seu dia a dia.</p>
+  </div>
+
+  <form class="search-box" (submit)="searchPosts()">
+    <span class="search-icon" aria-hidden="true">⌕</span>
+
+    <input
+      type="search"
+      name="busca"
+      placeholder="Busque por titulos de conteúdos..."
+      [(ngModel)]="searchTerm"
+      aria-label="Buscar conteúdos"
+    />
+
+    <button type="submit" aria-label="Pesquisar">Buscar</button>
+  </form>
+</section>

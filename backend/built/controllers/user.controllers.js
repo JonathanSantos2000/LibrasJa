@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUser = exports.getUsersPaginated = exports.login = exports.register = void 0;
+exports.getUserPhoto = exports.getUsersByRoles = exports.updateUser = exports.getUsersPaginated = exports.login = exports.register = void 0;
 const cloudinary_services_1 = require("../services/cloudinary.services");
 const userService = __importStar(require("../services/user.services"));
 const register = async (req, res) => {
@@ -110,3 +110,43 @@ const updateUser = async (req, res) => {
     }
 };
 exports.updateUser = updateUser;
+const getUsersByRoles = async (req, res) => {
+    try {
+        const rolesParam = req.query.roles;
+        const roles = (Array.isArray(rolesParam) ? rolesParam : [rolesParam]).map(Number);
+        if (roles.length === 0 ||
+            roles.some((role) => !Number.isInteger(role) || ![0, 1, 2].includes(role))) {
+            return res.status(400).json({
+                message: "Lista de roles inválida.",
+            });
+        }
+        const users = await userService.getUsersByRoles(roles);
+        return res.status(200).json(users);
+    }
+    catch (error) {
+        console.error("Erro ao buscar usuários por roles:", error);
+        return res.status(500).json({
+            message: "Erro ao buscar usuários.",
+        });
+    }
+};
+exports.getUsersByRoles = getUsersByRoles;
+const getUserPhoto = async (req, res) => {
+    try {
+        const id = req.params.id;
+        if (typeof id !== "string") {
+            res.status(400).json({ error: "ID do usuário inválido" });
+            return;
+        }
+        const photoUrl = await userService.getUserPhoto(id);
+        if (!photoUrl) {
+            res.status(404).send("Foto não encontrada");
+            return;
+        }
+        res.status(200).send(photoUrl);
+    }
+    catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+exports.getUserPhoto = getUserPhoto;

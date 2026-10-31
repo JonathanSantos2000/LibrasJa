@@ -1,0 +1,53 @@
+<section class="carrossel-section">
+  <div class="section-heading">
+    <div>
+      <span class="section-kicker">{{ kicker }}</span>
+      <h2>{{ titulo }}</h2>
+    </div>
+
+    <a [routerLink]="[VerTodas]" class="text-link">
+      Ver todas <span>→</span>
+    </a>
+  </div>
+
+  <div class="carrossel-carousel">
+    <button
+      class="carousel-button"
+      type="button"
+      aria-label="Anteriores"
+      (click)="voltar()"
+    >
+      ‹
+    </button>
+
+    <div class="carrossel-track" #carrosselTrack>
+      @for (item of carrossel; track item._id) {
+        <a
+          class="carrossel-card"
+          [routerLink]="
+            queryParams === 'q' ? ['/posts/', item._id] : [item.link]
+          "
+          [queryParams]="
+            queryParams === 'q' ? null : getQueryParams(item.titulo)
+          "
+        >
+          <span class="carrossel-icon">
+            <img [src]="item.linkImagem" [alt]="item.titulo" loading="lazy" />
+          </span>
+
+          <span class="carrossel-name">{{ item.titulo }}</span>
+          <span class="carrossel-arrow" aria-hidden="true">↗</span>
+        </a>
+      }
+    </div>
+
+    <button
+      class="carousel-button"
+      type="button"
+      aria-label="Próximas"
+      (click)="avancar()"
+    >
+      ›
+    </button>
+  </div>
+</section>

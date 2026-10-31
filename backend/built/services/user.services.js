@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addQtdPost = exports.updateUserRole = exports.countUsers = exports.getUsersPaginated = exports.loginUser = exports.createUser = void 0;
+exports.getUserPhoto = exports.getUsersByRoles = exports.addQtdPost = exports.updateUserRole = exports.countUsers = exports.getUsersPaginated = exports.loginUser = exports.createUser = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const user_utils_1 = require("../utils/user.utils");
 const user_model_1 = __importDefault(require("../models/user.model"));
@@ -89,3 +89,18 @@ const addQtdPost = async (userId) => {
     return user;
 };
 exports.addQtdPost = addQtdPost;
+const getUsersByRoles = async (roles) => {
+    return await user_model_1.default.find({
+        UsuNivAce: { $in: roles },
+        UsuAti: true,
+    })
+        .select("_id UsuNom UsuNivAce")
+        .sort({ UsuNom: 1 })
+        .lean();
+};
+exports.getUsersByRoles = getUsersByRoles;
+const getUserPhoto = async (id) => {
+    const user = await user_model_1.default.findById(id).select("UsuImgPer").lean();
+    return user?.UsuImgPer ?? null;
+};
+exports.getUserPhoto = getUserPhoto;

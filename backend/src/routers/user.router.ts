@@ -17,5 +17,6 @@ router.post(
 );
 
 router.get("/users-by-roles", userController.getUsersByRoles);
+router.get("/user-photo/:id", userController.getUserPhoto);
 
 export default router;

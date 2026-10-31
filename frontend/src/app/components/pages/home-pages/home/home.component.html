@@ -1,0 +1,23 @@
+<main class="home">
+  <app-home-hero></app-home-hero>
+
+  <app-home-search></app-home-search>
+  <!-- <app-home-categories></app-home-categories> -->
+  <app-home-carrossel
+    [kicker]="'DO SEU JEITO'"
+    [titulo]="'Explore por Categorias'"
+    [VerTodas]="'/categorias/categorias-list'"
+    [carrossel]="carrosselCategorias"
+    [queryParams]="'categoria'"
+  ></app-home-carrossel>
+
+  <app-home-carrossel
+    [kicker]="'APRENDA E COMPARTILHE'"
+    [titulo]="'Conteúdos em destaque'"
+    [VerTodas]="'/posts/posts-list'"
+    [carrossel]="carrosselPosts"
+    [queryParams]="'q'"
+  ></app-home-carrossel>
+
+  <app-home-community-banner></app-home-community-banner>
+</main>

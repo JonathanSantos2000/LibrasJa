@@ -8,6 +8,7 @@ export const USER_REGISTER_URL = BASE_URL + '/api/user/register';
 export const GET_ALL_USERS_PAGINATED_URL = BASE_URL + '/api/user/paginated';
 export const UPDATE_USER_ROLE_URL = BASE_URL + '/api/user/update-role';
 export const GET_USERS_BY_ROLES_URL = BASE_URL + '/api/user/users-by-roles';
+export const GET_USER_PHOTO_URL = BASE_URL + '/api/user/user-photo/';
 
 // CATEGORIAS URLs
 export const CATEGORIAS_REGISTER_URL = BASE_URL + '/api/categorias/register';

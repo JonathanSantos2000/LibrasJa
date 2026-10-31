@@ -43,4 +43,6 @@ router.post("/register", upload_middleware_1.uploadUserAvatar, userController.re
 router.post("/login", userController.login);
 router.get("/paginated", userController.getUsersPaginated);
 router.post("/update-role/:id", auth_middleware_1.authMiddleware, (0, role_middleware_1.roleMiddleware)([1]), userController.updateUser);
+router.get("/users-by-roles", userController.getUsersByRoles);
+router.get("/user-photo/:id", userController.getUserPhoto);
 exports.default = router;

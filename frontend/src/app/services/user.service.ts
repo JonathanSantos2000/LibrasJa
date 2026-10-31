@@ -5,6 +5,7 @@ import { User } from '../shared/models/user.models';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
 import {
   GET_ALL_USERS_PAGINATED_URL,
+  GET_USER_PHOTO_URL,
   GET_USERS_BY_ROLES_URL,
   UPDATE_USER_ROLE_URL,
   USER_LOGIN_URL,
@@ -77,6 +78,11 @@ export class UserService {
     return this.http.get<User[]>(`${GET_USERS_BY_ROLES_URL}?roles=1&roles=2`);
   }
 
+  getUserPhoto(userId: string): Observable<string> {
+    return this.http.get(`${GET_USER_PHOTO_URL}${userId}`, {
+      responseType: 'text',
+    });
+  }
   // ========================
   // PRIVATE HELPERS
   // ========================

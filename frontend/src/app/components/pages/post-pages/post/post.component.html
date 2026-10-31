@@ -25,15 +25,16 @@
       <h1>{{ post.PostTit }}</h1>
 
       <div class="video-meta">
-        <span>12.458 visualizações</span>
+        <!-- <span>12.458 visualizações</span>
 
         <span>•</span>
+        -->
 
         <span>{{ post.PostDatCad | date: "dd/MM/yyyy" }}</span>
       </div>
 
       <!-- AÇÕES -->
-      <div class="video-actions">
+      <!-- <div class="video-actions">
         <button>
           <i class="bi bi-hand-thumbs-up"></i>
           <span>1,2 mil</span>
@@ -42,11 +43,13 @@
         <button>
           <i class="bi bi-hand-thumbs-down"></i>
         </button>
-      </div>
-   
+      </div> -->
+
       <!-- CRIADOR -->
       <div class="channel">
-        <img [src]="user?.UsuImgPer" [alt]="post.PostAutNom" />
+        @if (photoUrl) {
+          <img [src]="photoUrl" [alt]="post.PostAutNom" />
+        }
 
         <div class="channel-info">
           <strong>{{ post.PostAutNom }}</strong>

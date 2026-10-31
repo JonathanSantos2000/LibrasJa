@@ -1,0 +1,41 @@
+.community-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  max-width: 1200px;
+  margin: 48px auto 0;
+  padding: 25px 22px;
+  border-radius: 23px;
+  background: linear-gradient(125deg, #302453, #6044a6);
+  color: white;
+}
+
+.community-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid #ffffff30;
+  border-radius: 15px;
+  background: #ffffff15;
+  font-size: 25px;
+}
+
+.community-content h2 {
+  max-width: 570px;
+  font-size: 25px;
+}
+
+.community-content p {
+  max-width: 520px;
+  margin: 12px 0 0;
+  color: #e0d9f1;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.community-button {
+  background: white;
+  color: #5538bd;
+}

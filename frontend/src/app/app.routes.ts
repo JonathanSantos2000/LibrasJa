@@ -8,9 +8,10 @@ import { UserListComponent } from './components/pages/auth/user/user-list/user-l
 import { PostNewComponent } from './components/pages/post-pages/post-new/post-new.component';
 import { PostListComponent } from './components/pages/post-pages/post-list/post-list.component';
 import { PostComponent } from './components/pages/post-pages/post/post.component';
+import { HomeComponent } from './components/pages/home-pages/home/home.component';
 
 export const routes: Routes = [
-  /* { path: '', component: HomeComponent }, */
+  { path: '', component: HomeComponent },
   { path: 'auth/registro', component: RegisterPageComponent },
   { path: 'auth/login', component: LoginPageComponent },
   { path: 'user/user-list', component: UserListComponent },

@@ -134,3 +134,9 @@ export const getUsersByRoles = async (roles: number[]) => {
     .sort({ UsuNom: 1 })
     .lean();
 };
+
+export const getUserPhoto = async (id: string): Promise<string | null> => {
+  const user = await User.findById(id).select("UsuImgPer").lean();
+
+  return user?.UsuImgPer ?? null;
+};
