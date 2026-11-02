@@ -31,6 +31,14 @@
   justify-items: center;
 }
 
+.conteiner__cards > a {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
 .Categorias__card {
   width: 100%;
   max-width: 380px;
@@ -54,7 +62,7 @@
 /* IMAGEM */
 
 .image-container {
-  width: 100%;
+  width: 350px;
 }
 
 .image-container img {

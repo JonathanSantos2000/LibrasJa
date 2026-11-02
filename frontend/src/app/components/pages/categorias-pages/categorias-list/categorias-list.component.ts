@@ -3,9 +3,10 @@ import { UserService } from '../../../../services/user.service';
 import { CategoriasService } from '../../../../services/categorias.service';
 import { Categorias } from '../../../../shared/models/categorias.models';
 import { UPLOAD_IMAGE_URL } from '../../../../shared/constants/urls';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   standalone: true,
   selector: 'app-categorias-list',
   styleUrl: './categorias-list.component.css',
@@ -26,7 +27,7 @@ export class CategoriasListComponent implements OnInit {
     this.loadCategorias();
   }
 
-  
+
   // Pagination properties
   loadCategorias(): void {
     this.categoriasService.getCategoriasPaginated(this.page).subscribe({
